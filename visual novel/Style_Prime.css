@@ -1,5 +1,6 @@
 body {
   font-family: 'Arial', sans-serif;
+  font-size: 3rem;
   background-color: #000;
   color: rgb(0, 0, 0);
   margin: 0;
@@ -7,6 +8,7 @@ body {
   height: 100dvh;
   display: flex;
   flex-direction: column;
+
 }
 
 #game-container {
@@ -24,15 +26,16 @@ body {
   background: #ffffff;
   padding: 15px;
   margin-bottom: 20px;
-  box-shadow: 5px 5px rgb(96, 96, 96);
-  width: 100%; /* Full width within container */
+  box-shadow: 20px 20px rgb(96, 96, 96);
+  width: 98%;
   box-sizing: border-box; /* Include padding in width calculation */
+  min-height: 10dvh;
 }
 
 #choices {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 40px;
   margin-top: auto;
   width: 100%; /* Full width within container */
   box-sizing: border-box; /* Include padding in width calculation */
@@ -44,11 +47,19 @@ body {
   border: none;
   color: white;
   cursor: pointer;
-  box-shadow: 5px 5px #898989;
-  width: 100%; /* Full width of choices container */
+  box-shadow: 20px 20px #898989;
+  width: 98%; /* Full width of choices container */
   box-sizing: border-box; /* Include padding in width calculation */
+  min-height: 5dvh;
+  font-size: 3rem;
+  margin-bottom: 20px;
+
 }
 
 .choice-button:hover {
   background: #777;
+}
+
+#dialogue {
+  padding-left: 5px;
 }
