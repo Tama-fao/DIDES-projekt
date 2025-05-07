@@ -1,0 +1,9 @@
+#scene-image {
+    height: 40dvh;
+   /* background-image: url('images/phone.png'); /* Add your image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    margin-top: 15dvh;
+  }
