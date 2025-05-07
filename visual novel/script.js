@@ -1,9 +1,9 @@
 const scenes = {
     start: {
-      text: "You're standing at a crossroad. What do you do?",
+      text: "You know, I've got a funny feeling I've seen this all before. Why? Cause I'm a caveman. Why? Cause I've got eyes in the back of my head. Why? It's the heat.",
       choices: [
-        { text: "Go left", nextScene: "leftPath" },
-        { text: "Go right", nextScene: "rightPath" }
+        { text: "Drink some water", nextScene: "leftPath" },
+        { text: "This is all an illusion ", nextScene: "rightPath" }
       ]
     },
     leftPath: {

@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "SouvenirB";
+  src: url("/visual\ novel/SouvenirB.woff2") format("woff2");
+}
+
+
+
 body {
-  font-family: 'Arial', sans-serif;
+  
   font-size: 3rem;
   background-color: #000;
   color: rgb(0, 0, 0);
@@ -8,6 +15,7 @@ body {
   height: 100dvh;
   display: flex;
   flex-direction: column;
+  font-family: 'SouvenirB';
 
 }
 
@@ -42,6 +50,7 @@ body {
 }
 
 .choice-button {
+  font-family: 'SouvenirB';
   padding: 10px;
   background: #555;
   border: none;
