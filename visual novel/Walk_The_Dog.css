@@ -1,0 +1,7 @@
+
+#image {
+  background-image: url("Walk_The_Dog.png");
+  background-size: cover; /* passt das Bild an */
+  background-position: center;
+  background-repeat: no-repeat;
+}
