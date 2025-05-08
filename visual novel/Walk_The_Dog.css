@@ -13,22 +13,22 @@
 }
 
 body {
-  color: rgb(125, 21, 120);
+  color: #7d1578;
 }
 
 
 #text-box {
   background: #e96eff;
-  box-shadow: 20px 20px rgb(255, 0, 187);
+  box-shadow: 20px 20px #00fbff;
 }
 
 .choice-button {
- 
-  background: #555;
-  color: white;
-  box-shadow: 20px 20px #898989;
+  background: #7d1578;
+  color: #e96eff;
+  box-shadow: 20px 20px #00fbff;
 }
 
 .choice-button:hover {
-  background: #777;
+  background: #e96eff;
+  color: #7d1578;
 }
