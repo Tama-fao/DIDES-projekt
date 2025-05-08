@@ -23,36 +23,46 @@ const scenes = {
     },
     Ok: {
       text: "I left my mom and I left my dad. And I just want to go home now. Oh! I feel so bad. I feel so sad. But not as bad as the night I wrote this song.",
-      choices: []
+      choices: [
+        { text: "...", nextScene: "link", isLink: true, href: "Phone2.html" },
+      ]
     },
     Sorry: {
       text: "Well, I just want to go home now and walk the dog.",
-      choices: []
+      choices: [{ text: "...", nextScene: "link", isLink: true, href: "Phone2.html" },]
     },
 
   };
   
   let currentScene = "start";
-  
+
   function showScene(sceneKey) {
     const scene = scenes[sceneKey];
     currentScene = sceneKey;
     document.getElementById("dialogue").innerText = scene.text;
-
+    
     const sceneImage = document.getElementById("scene-image");
     if (scene.image) {
-    sceneImage.style.backgroundImage = `url('${scene.image}')`;
-   }
-    
+      sceneImage.style.backgroundImage = `url('${scene.image}')`;
+    }
+  
     const choicesContainer = document.getElementById("choices");
     choicesContainer.innerHTML = "";
     
     scene.choices.forEach(choice => {
-      const button = document.createElement("button");
-      button.innerText = choice.text;
-      button.classList.add("choice-button");
-      button.onclick = () => showScene(choice.nextScene);
-      choicesContainer.appendChild(button);
+        const button = document.createElement("button");
+        button.innerText = choice.text;
+        button.classList.add("choice-button");
+        
+        if (choice.isLink) {
+            // If it's a link, navigate to the specified href
+            button.onclick = () => window.location.href = choice.href;
+        } else {
+            // Otherwise, proceed with normal scene navigation
+            button.onclick = () => showScene(choice.nextScene);
+        }
+        
+        choicesContainer.appendChild(button);
     });
   }
   

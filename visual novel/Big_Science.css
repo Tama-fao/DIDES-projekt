@@ -1,5 +1,5 @@
 #image {
-    /*background-image: url("From-The-Air3.png"); */
+    background-image: url("Big-Science.png"); 
     background-size: cover; /* passt das Bild an */
     background-position: center;
     background-repeat: no-repeat;
@@ -12,13 +12,13 @@
   }
   
   body {
-    color: rgb(255, 251, 0);
+    color: rgb(0, 0, 0);
   }
   
   
   #text-box {
     background: #fffa6e;
-    box-shadow: 20px 20px rgb(246, 255, 0);
+    box-shadow: 20px 20px rgb(237, 166, 0);
   }
   
   .choice-button {

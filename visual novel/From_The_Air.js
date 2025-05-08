@@ -1,7 +1,7 @@
 const scenes = {
     start: {
       text: "Good evening.This is your Captain. This is gonna be some day. Standby.",
-      image: "Walk_The_Dog.png",
+      image: "images/From-The-Air3.png",
       choices: [
         { text: "Oh no!", nextScene: "No" },
         { text: "Whatever.", nextScene: "Whatever" }

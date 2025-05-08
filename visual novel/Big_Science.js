@@ -1,7 +1,7 @@
 const scenes = {
     start: {
       text: "Golden cities.Golden towns. Coo coo it's cold outside. Don't forget your mittens. Here's a man who lives a life of danger. Everywhere he goes he stays - a stranger.",
-      image: "Big-Science.png",
+      image: "images/Big-Science.png",
       choices: [
         { text: "Don't be a stranger", nextScene: "stranger" },
         { text: "Got places to be, ask for Directions.", nextScene: "directions" }
@@ -15,9 +15,9 @@ const scenes = {
       ]
     },
     directions: {
-      text: "Hey Pal! How do I get to town from here?  And he said, Well just take a right where they're going to build that new shopping mall, go straight past where they're going to put in the freeway, take a left at what's going to be the new sports center, and keep going until you hit the place where they're thinking of building that drive-in bank.You can't miss it.",
+      text: "Hey Pal! How do I get to town from here? And he said, Well just take a right where they're going to build that new shopping mall, go straight past where they're going to put in the freeway, take a left at what's going to be the new sports center, and keep going until you hit the place where they're thinking of building that drive-in bank.You can't miss it.",
       choices: [
-        { text: "Thank you, bye ", nextScene: "Thanks" },
+        { text: "Thank you, bye", nextScene: "Thanks" },
         { text: "Can I hitch a ride?", nextScene: "Ride" }
       ]
     },
