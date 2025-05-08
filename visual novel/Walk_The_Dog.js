@@ -24,12 +24,12 @@ const scenes = {
     Ok: {
       text: "I left my mom and I left my dad. And I just want to go home now. Oh! I feel so bad. I feel so sad. But not as bad as the night I wrote this song.",
       choices: [
-        { text: "...", nextScene: "link", isLink: true, href: "Phone2.html" },
+        { text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },
       ]
     },
     Sorry: {
       text: "Well, I just want to go home now and walk the dog.",
-      choices: [{ text: "...", nextScene: "link", isLink: true, href: "Phone2.html" },]
+      choices: [{ text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },]
     },
 
   };

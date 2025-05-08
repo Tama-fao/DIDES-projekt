@@ -40,14 +40,14 @@ const scenes = {
       follow4: {
         text: "Heh heh.", 
         choices: [
-            { text: "...", nextScene: "link", isLink: true, href: "Phone4.html" },
+            { text: "...", nextScene: "link", isLink: true, href: "Phone_4.html" },
         ]
       },
 
       Ignore: {
         text: "This is your Captain-and we are going down.We are all going down, together.",
         choices: [
-          { text: "Put your hands over your eyes. Jump out of the plane.", nextScene: "link", isLink: true, href: "Phone4.html" },
+          { text: "Put your hands over your eyes. Jump out of the plane.", nextScene: "link", isLink: true, href: "Phone_4.html" },
         
         ]
       },
@@ -65,7 +65,7 @@ const scenes = {
       water: {
         text: "This is your Captain-and we are going down. Place your tray tables in their upright, locked position.", 
         choices: [
-            { text: "...", nextScene: "link", isLink: true, href: "Phone4.html" },
+            { text: "...", nextScene: "link", isLink: true, href: "Phone_4.html" },
         ]
       },
 

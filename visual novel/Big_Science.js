@@ -25,7 +25,7 @@ const scenes = {
       aye: {
         text: "Could you turn out the lights? Let's roll the film. Big Science. Hallelujah. Every man, every man for himself. Big Science. Hallelujah. Yodellayheehoo.", 
         choices: [
-            { text: "...", nextScene: "link", isLink: true, href: "Phone3.html" },
+            { text: "...", nextScene: "link", isLink: true, href: "Phone_3.html" },
         ]
       },
 
@@ -48,14 +48,14 @@ const scenes = {
       what: {
         text: "Ooo coo coo.", 
         choices: [
-            { text: "...", nextScene: "link", isLink: true, href: "Phone3.html" },
+            { text: "...", nextScene: "link", isLink: true, href: "_3.html" },
         ]
       },
    
       Thanks: {
         text: "And I said This must be the place.", 
         choices: [
-            { text: "...", nextScene: "link", isLink: true, href: "Phone3.html" },
+            { text: "...", nextScene: "link", isLink: true, href: "Phone_3.html" },
         ]
       },
 
