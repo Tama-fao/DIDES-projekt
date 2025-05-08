@@ -52,6 +52,9 @@ const scenes = {
     },
     time: {
         text: "Oh yeah, P.S. I - feel - feel like - I am - in a burning building - and I gotta go. Cause I - I feel - feel like - I am - in a burning building - and I gotta go.",
+        choices: [
+            { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
+        ]
     }
 
   };
