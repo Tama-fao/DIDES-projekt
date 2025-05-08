@@ -5,7 +5,7 @@ const scenes = {
     choices: [
       { text: "reply", nextScene: "link", isLink: true, href: "Let_X=X.html" },
     ]
-  },
+  }
 };
 
 let currentScene = "start";

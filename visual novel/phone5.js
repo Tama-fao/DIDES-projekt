@@ -1,11 +1,11 @@
 const scenes = {
   start: {
     text: "So hold me, Mom, in your long arms. So hold me, Mom, in your long arms. In your automatic arms. Your electronic arms. In your arms. So hold me, Mom, in your long arms. Your petrochemical arms. Your military arms. In your electronic arms.",
-    image: "images/phone.png",
+    image: "images/phone.png.",
     choices: [
       { text: "Credits", nextScene: "link", isLink: true, href: "Credits.html" },
     ]
-  },
+  }
 };
 
 let currentScene = "start";
