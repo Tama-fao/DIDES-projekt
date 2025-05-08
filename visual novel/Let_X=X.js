@@ -9,6 +9,9 @@ const scenes = {
     },
     thanks: {
       text: "So... thanks. Thanks for going all out.",
+      choices: [
+        { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
+    ]
       
 
     },
@@ -49,6 +52,9 @@ const scenes = {
     },
     understandable: {
         text: "Let X=X.Hug and kisses. XXXXOOOO.",
+        choices:[
+        { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
+        ]
     },
     time: {
         text: "Oh yeah, P.S. I - feel - feel like - I am - in a burning building - and I gotta go. Cause I - I feel - feel like - I am - in a burning building - and I gotta go.",
