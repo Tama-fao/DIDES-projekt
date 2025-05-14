@@ -6,3 +6,26 @@
     background-position: center;
     border-radius: 10px;
   }
+
+  
+  #text-box {
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 20px 20px rgb(96, 96, 96);
+    width: 98%;
+    box-sizing: border-box;
+    min-height: 10dvh;
+    max-height: 10dvh;
+    overflow: hidden; /* Hide anything outside the box */
+    position: relative; /* Needed for absolute positioning */
+  }
+  
+  #dialogue {
+    position: absolute;
+    width: 100%;
+    white-space: pre-wrap; /* Preserve line breaks */
+    transform: translateY(100%); /* Start below by default */
+    will-change: transform; /* Optimize for animation */
+    transition: transform 0.1s linear; /* Smooth scrolling */
+  }

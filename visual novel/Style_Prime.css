@@ -65,6 +65,22 @@ body {
 
 }
 
+
+button {
+  font-family: 'SouvenirB';
+  padding: 10px;
+  background: #555;
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 20px 20px #898989;
+  width: 98%; /* Full width of choices container */
+  box-sizing: border-box; /* Include padding in width calculation */
+  min-height: 5dvh;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
 .choice-button:hover {
   background: #777;
 }
