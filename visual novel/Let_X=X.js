@@ -1,6 +1,6 @@
 const scenes = {
     start: {
-      text: "Got the time?",
+      audio: "/visual%20novel/audio/Let_X=X/Got_the_time.mp3",
       image: "Let_X=X.png",
       choices: [
         { text: "No.", nextScene: "thanks" },
@@ -8,7 +8,7 @@ const scenes = {
       ]
     },
     thanks: {
-      text: "So... thanks. Thanks for going all out.",
+      audio: "/visual%20novel/audio/Let_X=X/thanks.mp3",
       choices: [
         { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
     ]
@@ -16,48 +16,48 @@ const scenes = {
 
     },
     postcard: {
-      text: "I got this postcard. And it read, it said: Dear Amigo - Dear Partner. Listen, uh - I just want to say thanks. So...thanks.",
+      audio: "/visual%20novel/audio/Let_X=X/letter.mp3",
       choices: [
         { text: "Why didn't you contact me back sooner?", nextScene: "contact" },
         { text: "No problem, for you, always.", nextScene: "always" }
       ]
     },
     contact: {
-      text: "I met this guy - and he looked like might have been a hat check clerk at an ice rink. AWhich, in fact, he turned out to be.",
+      audio: "/visual%20novel/audio/Let_X=X/I_met_a_man.mp3",
       choices: [
         { text: "And?", nextScene: "and" },
         { text: "Allright, understandable.", nextScene: "understandable"}
       ]
     },
     always: {
-      text: "Let X=X. You know, it could be you. It's a sky-blue sky. Satellites are out tonight.",
+      audio: "/visual%20novel/audio/Let_X=X/letX=X_satellites.mp3",
       choices: [
         { text: "Sorry, I don't have the time.", nextScene: "time" },
         { text: "Let's watch them.", nextScene: "watch"}
       ]
     },
     and: {
-        text: "Right again.",
+        audio: "/visual%20novel/audio/Let_X=X/Right_again.mp3",
         choices: [
             { text: "That was a weak excuse.", nextScene: "time"},
             { text: "Ok, reason enough.", nextScene: "understandable"}
         ]
     },
     watch: {
-        text: "You know, I could write a book. And this book would be think enough to stun an ox. Cause I can see the future and it's a place - about 70 miles east of here. Where it's lighter. Linger on over here.",
+      audio: "/visual%20novel/audio/Let_X=X/Book_linger_on.mp3",
         choices: [
             { text: "Oh boy...", nextScene: "time"},
             { text: "Then let's wait for the future together.", nextScene: "understandable"}
         ]
     },
     understandable: {
-        text: "Let X=X.Hug and kisses. XXXXOOOO.",
+      audio: "/visual%20novel/audio/Let_X=X/letx=x_hugs.mp3",
         choices:[
         { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
         ]
     },
     time: {
-        text: "Oh yeah, P.S. I - feel - feel like - I am - in a burning building - and I gotta go. Cause I - I feel - feel like - I am - in a burning building - and I gotta go.",
+      audio: "/visual%20novel/audio/Let_X=X/burning_building_ganz.mp3",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
         ]
@@ -66,28 +66,50 @@ const scenes = {
   };
   
   let currentScene = "start";
-  
-  function showScene(sceneKey) {
-    const scene = scenes[sceneKey];
-    currentScene = sceneKey;
-    document.getElementById("dialogue").innerText = scene.text;
+let currentAudio = null;
 
-    const sceneImage = document.getElementById("scene-image");
-    if (scene.image) {
-    sceneImage.style.backgroundImage = `url('${scene.image}')`;
-   }
-    
-    const choicesContainer = document.getElementById("choices");
-    choicesContainer.innerHTML = "";
-    
+function showScene(sceneKey) {
+  const scene = scenes[sceneKey];
+  const dialogue = document.getElementById("dialogue");
+  const sceneImage = document.getElementById("scene-image");
+  const choicesContainer = document.getElementById("choices");
+
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
+  
+  // Play new audio if specified in the scene
+  if (scene.audio) {
+    currentAudio = new Audio(scene.audio);
+    currentAudio.loop = scene.loopAudio || false;
+    currentAudio.play().catch(e => console.log("Audio play failed:", e));
+  }
+
+  // Set the text and image
+  dialogue.textContent = scene.text;
+  dialogue.style.transform = "translateY(0)"; // Ensure text is visible
+  sceneImage.style.backgroundImage = `url('${scene.image}')`;
+  
+  // Set image clickability for start scene
+  sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
+  sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
+  
+  // Handle choices
+  choicesContainer.innerHTML = "";
+  if (scene.choices) {
     scene.choices.forEach(choice => {
       const button = document.createElement("button");
-      button.innerText = choice.text;
-      button.classList.add("choice-button");
-      button.onclick = () => showScene(choice.nextScene);
+      button.textContent = choice.text;
+      button.onclick = choice.isLink 
+        ? () => (window.location.href = choice.href)
+        : () => showScene(choice.nextScene);
       choicesContainer.appendChild(button);
     });
   }
-  
+}
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
   showScene(currentScene);
-  
+});

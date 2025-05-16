@@ -1,6 +1,7 @@
 const scenes = {
     start: {
-      text: "Well, I saw a lot of trees today and they were all made of wood. They were wooden trees and they were made entirely of wood.",
+      loopAudio: true,
+      audio: "/visual%20novel/audio/Walk_The_Dog/I_Saw_Trees_001.mp3",
       image: "Walk_The_Dog.png",
       choices: [
         { text: "I don't care.", nextScene: "Care" },
@@ -8,63 +9,77 @@ const scenes = {
       ]
     },
     Care: {
-      text: "I came home today and you were all on fire. Your shirt was on fire, and your hair was on fire, And flames were licking all around your feet. And I did not know what to do! And then a thousand violins began to play, And I really did not know what to do then. So I just decided to go out and walk the dog.",
+      audio: "/visual%20novel/audio/Walk_The_Dog/I_on_Fire.mp3",
       choices: [
         { text: "Ok, so?", nextScene: "Ok" },
         { text: "I'm Sorry...", nextScene: "Sorry" }
       ]
     },
     Cool: {
-      text: "I went to the movies, and I saw a dog thirty feet high. And this dog was made entirely of light. And he filled up the whole screen. And his eyes were long hallways.He had those long, echoing, hallway eyes.",
+      audio: "/visual%20novel/audio/Walk_The_Dog/Dog_Cinema_001.mp3",
       choices: [
         { text: "Who cares.", nextScene: "Ok" },
         { text: "I love Dogs too!", nextScene: "Sorry" }
       ]
     },
     Ok: {
-      text: "I left my mom and I left my dad. And I just want to go home now. Oh! I feel so bad. I feel so sad. But not as bad as the night I wrote this song.",
+      audio: "/visual%20novel/audio/Walk_The_Dog/I_feel_so_bad.mp3",
       choices: [
         { text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },
       ]
     },
     Sorry: {
-      text: "Well, I just want to go home now and walk the dog.",
+      audio: "/visual%20novel/audio/Walk_The_Dog/I_walk_the_dog.mp3",
       choices: [{ text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },]
     },
 
   };
   
   let currentScene = "start";
+let currentAudio = null;
 
-  function showScene(sceneKey) {
-    const scene = scenes[sceneKey];
-    currentScene = sceneKey;
-    document.getElementById("dialogue").innerText = scene.text;
-    
-    const sceneImage = document.getElementById("scene-image");
-    if (scene.image) {
-      sceneImage.style.backgroundImage = `url('${scene.image}')`;
-    }
-  
-    const choicesContainer = document.getElementById("choices");
-    choicesContainer.innerHTML = "";
-    
-    scene.choices.forEach(choice => {
-        const button = document.createElement("button");
-        button.innerText = choice.text;
-        button.classList.add("choice-button");
-        
-        if (choice.isLink) {
-            // If it's a link, navigate to the specified href
-            button.onclick = () => window.location.href = choice.href;
-        } else {
-            // Otherwise, proceed with normal scene navigation
-            button.onclick = () => showScene(choice.nextScene);
-        }
-        
-        choicesContainer.appendChild(button);
-    });
+function showScene(sceneKey) {
+  const scene = scenes[sceneKey];
+  const dialogue = document.getElementById("dialogue");
+  const sceneImage = document.getElementById("scene-image");
+  const choicesContainer = document.getElementById("choices");
+
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
   }
   
-  showScene(currentScene);
+  // Play new audio if specified in the scene
+  if (scene.audio) {
+    currentAudio = new Audio(scene.audio);
+    currentAudio.loop = scene.loopAudio || false;
+    currentAudio.play().catch(e => console.log("Audio play failed:", e));
+  }
+
+  // Set the text and image
+  dialogue.textContent = scene.text;
+  dialogue.style.transform = "translateY(0)"; // Ensure text is visible
+  sceneImage.style.backgroundImage = `url('${scene.image}')`;
   
+  // Set image clickability for start scene
+  sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
+  sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
+  
+  // Handle choices
+  choicesContainer.innerHTML = "";
+  if (scene.choices) {
+    scene.choices.forEach(choice => {
+      const button = document.createElement("button");
+      button.textContent = choice.text;
+      button.onclick = choice.isLink 
+        ? () => (window.location.href = choice.href)
+        : () => showScene(choice.nextScene);
+      choicesContainer.appendChild(button);
+    });
+  }
+}
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  showScene(currentScene);
+});
