@@ -1,7 +1,7 @@
 const scenes = {
     start: {
       audio: "/visual%20novel/audio/Let_X=X/Got_the_time.mp3",
-      image: "Let_X=X.png",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_001.png",
       choices: [
         { text: "No.", nextScene: "thanks" },
         { text: "For sure!", nextScene: "postcard" }
@@ -9,6 +9,7 @@ const scenes = {
     },
     thanks: {
       audio: "/visual%20novel/audio/Let_X=X/thanks.mp3",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_003.png",
       choices: [
         { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
     ]
@@ -17,6 +18,7 @@ const scenes = {
     },
     postcard: {
       audio: "/visual%20novel/audio/Let_X=X/letter.mp3",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_001.png",
       choices: [
         { text: "Why didn't you contact me back sooner?", nextScene: "contact" },
         { text: "No problem, for you, always.", nextScene: "always" }
@@ -24,6 +26,7 @@ const scenes = {
     },
     contact: {
       audio: "/visual%20novel/audio/Let_X=X/I_met_a_man.mp3",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_003.png",
       choices: [
         { text: "And?", nextScene: "and" },
         { text: "Allright, understandable.", nextScene: "understandable"}
@@ -31,6 +34,7 @@ const scenes = {
     },
     always: {
       audio: "/visual%20novel/audio/Let_X=X/letX=X_satellites.mp3",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_002.png",
       choices: [
         { text: "Sorry, I don't have the time.", nextScene: "time" },
         { text: "Let's watch them.", nextScene: "watch"}
@@ -38,6 +42,7 @@ const scenes = {
     },
     and: {
         audio: "/visual%20novel/audio/Let_X=X/Right_again.mp3",
+        image: "/visual%20novel/images/Let_X=X/LetX=X_003.png",
         choices: [
             { text: "That was a weak excuse.", nextScene: "time"},
             { text: "Ok, reason enough.", nextScene: "understandable"}
@@ -45,6 +50,7 @@ const scenes = {
     },
     watch: {
       audio: "/visual%20novel/audio/Let_X=X/Book_linger_on.mp3",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_002.png",
         choices: [
             { text: "Oh boy...", nextScene: "time"},
             { text: "Then let's wait for the future together.", nextScene: "understandable"}
@@ -52,12 +58,14 @@ const scenes = {
     },
     understandable: {
       audio: "/visual%20novel/audio/Let_X=X/letx=x_hugs.mp3",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_002.png",
         choices:[
         { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
         ]
     },
     time: {
       audio: "/visual%20novel/audio/Let_X=X/burning_building_ganz.mp3",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_002.png",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
         ]

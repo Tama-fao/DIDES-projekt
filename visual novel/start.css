@@ -1,0 +1,12 @@
+#image {
+    background-image: url("Walk_The_Dog.png");
+    background-size: cover; /* passt das Bild an */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed; /* Immer am gleichen Ort im Viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}

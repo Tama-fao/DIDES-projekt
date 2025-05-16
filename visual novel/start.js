@@ -1,41 +1,12 @@
 const scenes = {
     start: {
-      loopAudio: true,
-      audio: "/visual%20novel/audio/Walk_The_Dog/I_Saw_Trees_001.mp3",
-      image: "/visual%20novel/images/Walk_The_Dog/Dog_001.png",
       choices: [
-        { text: "I don't care.", nextScene: "Care" },
-        { text: "Cool!", nextScene: "Cool" }
+        { text: "High Five to Start", nextScene: "link", isLink: true, href: "Phone_1.html" },
       ]
     },
-    Care: {
-      audio: "/visual%20novel/audio/Walk_The_Dog/I_on_Fire.mp3",
-      choices: [
-        { text: "Ok, so?", nextScene: "Ok" },
-        { text: "I'm Sorry...", nextScene: "Sorry" }
-      ]
-    },
-    Cool: {
-      audio: "/visual%20novel/audio/Walk_The_Dog/Dog_Cinema_001.mp3",
-      choices: [
-        { text: "Who cares.", nextScene: "Ok" },
-        { text: "I love Dogs too!", nextScene: "Sorry" }
-      ]
-    },
-    Ok: {
-      audio: "/visual%20novel/audio/Walk_The_Dog/I_feel_so_bad.mp3",
-      choices: [
-        { text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },
-      ]
-    },
-    Sorry: {
-      audio: "/visual%20novel/audio/Walk_The_Dog/I_walk_the_dog.mp3",
-      choices: [{ text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },]
-    },
-
   };
-  
-  let currentScene = "start";
+
+let currentScene = "start";
 let currentAudio = null;
 
 function showScene(sceneKey) {

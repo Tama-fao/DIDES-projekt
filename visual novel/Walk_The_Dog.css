@@ -1,6 +1,6 @@
 
-#image {
-  background-image: url("Walk_The_Dog.png");
+#scene-image {
+  background-image: url("Dog_001.png");
   background-size: cover; /* passt das Bild an */
   background-position: center;
   background-repeat: no-repeat;
@@ -12,14 +12,17 @@
   z-index: -1;
 }
 
-body {
-  color: #7d1578;
-}
-
-
-#text-box {
-  background: #e96eff;
-  box-shadow: 20px 20px #00fbff;
+#scene-image2 {
+  background-image: url("Walk_The_Dog.png");
+  background-size: cover; /* passt das Bild an */
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed; /* Immer am gleichen Ort im Viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .choice-button {
