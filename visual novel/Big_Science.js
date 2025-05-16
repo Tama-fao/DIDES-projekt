@@ -1,21 +1,36 @@
 const scenes = {
     start: {
-      text: "Golden cities.Golden towns. Coo coo it's cold outside. Don't forget your mittens. Here's a man who lives a life of danger. Everywhere he goes he stays - a stranger.",
       image: "images/Big-Science.png",
+      audio: "/visual%20novel/audio/big-science/golden-city.mp3",
+      choices: [
+        { text: "got them", nextScene: "mitten" },
+       
+      ]
+    },
+
+    mitten: {
+      audio: "/visual%20novel/audio/big-science/here-is-a-man.mp3",
+      image: "images/Big-Science2.png",
+
       choices: [
         { text: "Don't be a stranger", nextScene: "stranger" },
         { text: "Got places to be, ask for Directions.", nextScene: "directions" }
       ]
     },
+
     stranger: {
-      text: "Howdy stranger. And he said, Every man, every man for himself. Every man, every man for himself. CAll in favor say aye.",
+      audio: "/visual%20novel/audio/big-science/howdy-every-man.mp3",
+      image: "images/Big-Science2.png",
+
       choices: [
         { text: "aye", nextScene: "aye" },
         { text: "nay", nextScene: "nay" }
       ]
     },
     directions: {
-      text: "Hey Pal! How do I get to town from here? And he said, Well just take a right where they're going to build that new shopping mall, go straight past where they're going to put in the freeway, take a left at what's going to be the new sports center, and keep going until you hit the place where they're thinking of building that drive-in bank.You can't miss it.",
+      audio: "/visual%20novel/audio/big-science/hey-pal-directions.mp3",
+      image: "images/Big-Science2.png",
+
       choices: [
         { text: "Thank you, bye", nextScene: "Thanks" },
         { text: "Can I hitch a ride?", nextScene: "Ride" }
@@ -23,14 +38,18 @@ const scenes = {
     },
 
       aye: {
-        text: "Could you turn out the lights? Let's roll the film. Big Science. Hallelujah. Every man, every man for himself. Big Science. Hallelujah. Yodellayheehoo.", 
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/crazy.mp3",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "Phone_3.html" },
         ]
       },
 
       nay: {
-        text: "I think we should put some mountains here. Otherwise, what are all the characters going to fall off of?",
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/mountains.mp3",
         choices: [
           { text: "Totally!", nextScene: "stairs" },
           { text: "What?", nextScene: "stairs" }
@@ -38,7 +57,9 @@ const scenes = {
       },
 
       stairs: {
-        text: "And what about stairs?",
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/stairs.mp3",
         choices: [
           { text: "All about that!", nextScene: "aye" },
           { text: "What?", nextScene: "what" }
@@ -46,21 +67,28 @@ const scenes = {
       },
 
       what: {
-        text: "Ooo coo coo.", 
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/Ooo-coo-coo.mp3",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "_3.html" },
         ]
       },
    
       Thanks: {
-        text: "And I said This must be the place.", 
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/that-must-be-the-place.mp3",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "Phone_3.html" },
         ]
       },
 
       Ride: {
-        text: "Mind if I smoke?",
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/smoke.mp3",
+
         choices: [
           { text: "No, be silent", nextScene: "silent" },
           { text: "Sure, go ahead.", nextScene: "Sure" }
@@ -68,14 +96,18 @@ const scenes = {
       },
 
       Sure: {
-        text: "Hey Professor!", 
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/hey-professor.mp3",
         choices: [
             { text: "Thanks for the ride.", nextScene: "link", isLink: true, href: "Phone3.html" },
         ]
       },
 
       silent: {
-        text: "And long cars in long lines and great big signs and they all say, Hallelujah. AYodellayheehoo. Every man for himself.",
+        image: "images/Big-Science2.png",
+
+        audio: "/visual%20novel/audio/big-science/and-long-cars.mp3",
         choices: [
           { text: "...", nextScene: "nay" },
         ]
@@ -83,37 +115,53 @@ const scenes = {
 
   };
   
-  let currentScene = "start";
+ 
+let currentScene = "start";
+let currentAudio = null;
 
-  function showScene(sceneKey) {
-    const scene = scenes[sceneKey];
-    currentScene = sceneKey;
-    document.getElementById("dialogue").innerText = scene.text;
-    
-    const sceneImage = document.getElementById("scene-image");
-    if (scene.image) {
-      sceneImage.style.backgroundImage = `url('${scene.image}')`;
-    }
-  
-    const choicesContainer = document.getElementById("choices");
-    choicesContainer.innerHTML = "";
-    
-    scene.choices.forEach(choice => {
-        const button = document.createElement("button");
-        button.innerText = choice.text;
-        button.classList.add("choice-button");
-        
-        if (choice.isLink) {
-            // If it's a link, navigate to the specified href
-            button.onclick = () => window.location.href = choice.href;
-        } else {
-            // Otherwise, proceed with normal scene navigation
-            button.onclick = () => showScene(choice.nextScene);
-        }
-        
-        choicesContainer.appendChild(button);
-    });
+function showScene(sceneKey) {
+  const scene = scenes[sceneKey];
+  const dialogue = document.getElementById("dialogue");
+  const sceneImage = document.getElementById("scene-image");
+  const choicesContainer = document.getElementById("choices");
+
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
   }
   
+  // Play new audio if specified in the scene
+  if (scene.audio) {
+    currentAudio = new Audio(scene.audio);
+    currentAudio.loop = scene.loopAudio || false;
+    currentAudio.play().catch(e => console.log("Audio play failed:", e));
+  }
+
+  // Set the text and image
+  dialogue.textContent = scene.text;
+  dialogue.style.transform = "translateY(0)"; // Ensure text is visible
+  sceneImage.style.backgroundImage = `url('${scene.image}')`;
+  
+  // Set image clickability for start scene
+  sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
+  sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
+  
+  // Handle choices
+  choicesContainer.innerHTML = "";
+  if (scene.choices) {
+    scene.choices.forEach(choice => {
+      const button = document.createElement("button");
+      button.textContent = choice.text;
+      button.onclick = choice.isLink 
+        ? () => (window.location.href = choice.href)
+        : () => showScene(choice.nextScene);
+      choicesContainer.appendChild(button);
+    });
+  }
+}
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
   showScene(currentScene);
+});
   

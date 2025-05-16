@@ -17,19 +17,5 @@
   }
   
   
-  #text-box {
-    background: #6ef0ff;
-    box-shadow: 20px 20px rgb(0, 187, 255);
-  }
-  
-  .choice-button {
-   
-    background: #555;
-    color: white;
-    box-shadow: 20px 20px #898989;
-  }
-  
-  .choice-button:hover {
-    background: #777;
-  }
+
   
