@@ -2,6 +2,7 @@ const scenes = {
     start: {
       text: "Good evening.This is your Captain. This is gonna be some day. Standby.",
       image: "images/From-The-Air3.png",
+      audio: "/visual%20novel/audio/oh-superman/hi-im-not-home.mp3",
       choices: [
         { text: "Oh no!", nextScene: "No" },
         { text: "Whatever.", nextScene: "Whatever" }
@@ -9,6 +10,7 @@ const scenes = {
     },
     No: {
       text: "Uh-this is your Captain again. We are about to attempt a crash landing.Please extinuish all cigarettes.Place your tray tables in their upright, locked position. Your Captain says: Put your head on your knees.",
+      audio: "/visual%20novel/audio/oh-superman/hi-im-not-home.mp3",
       choices: [
         { text: "Ignore", nextScene: "Ignore" },
         { text: "follow instructions", nextScene: "follow" }
@@ -81,36 +83,51 @@ const scenes = {
   };
   
   let currentScene = "start";
-
+  let currentAudio = null;
+  
   function showScene(sceneKey) {
     const scene = scenes[sceneKey];
-    currentScene = sceneKey;
-    document.getElementById("dialogue").innerText = scene.text;
-    
+    const dialogue = document.getElementById("dialogue");
     const sceneImage = document.getElementById("scene-image");
-    if (scene.image) {
-      sceneImage.style.backgroundImage = `url('${scene.image}')`;
+    const choicesContainer = document.getElementById("choices");
+  
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+    
+    // Play new audio if specified in the scene
+    if (scene.audio) {
+      currentAudio = new Audio(scene.audio);
+      currentAudio.loop = scene.loopAudio || false;
+      currentAudio.play().catch(e => console.log("Audio play failed:", e));
     }
   
-    const choicesContainer = document.getElementById("choices");
-    choicesContainer.innerHTML = "";
+    // Set the text and image
+    dialogue.textContent = scene.text;
+    dialogue.style.transform = "translateY(0)"; // Ensure text is visible
+    sceneImage.style.backgroundImage = `url('${scene.image}')`;
     
-    scene.choices.forEach(choice => {
+    // Set image clickability for start scene
+    sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
+    sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
+    
+    // Handle choices
+    choicesContainer.innerHTML = "";
+    if (scene.choices) {
+      scene.choices.forEach(choice => {
         const button = document.createElement("button");
-        button.innerText = choice.text;
-        button.classList.add("choice-button");
-        
-        if (choice.isLink) {
-            // If it's a link, navigate to the specified href
-            button.onclick = () => window.location.href = choice.href;
-        } else {
-            // Otherwise, proceed with normal scene navigation
-            button.onclick = () => showScene(choice.nextScene);
-        }
-        
+        button.textContent = choice.text;
+        button.onclick = choice.isLink 
+          ? () => (window.location.href = choice.href)
+          : () => showScene(choice.nextScene);
         choicesContainer.appendChild(button);
-    });
+      });
+    }
   }
   
-  showScene(currentScene);
+  // Initialize
+  document.addEventListener("DOMContentLoaded", () => {
+    showScene(currentScene);
+  });
   
