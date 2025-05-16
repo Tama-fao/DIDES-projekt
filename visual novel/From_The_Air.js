@@ -1,23 +1,24 @@
 const scenes = {
     start: {
-      text: "Good evening.This is your Captain. This is gonna be some day. Standby.",
-      image: "images/From-The-Air3.png",
-      audio: "/visual%20novel/audio/oh-superman/hi-im-not-home.mp3",
+      image: "images/From-The-Air.png",
+      audio: "/visual%20novel/audio/oh-superman/good-evening.mp3",
       choices: [
         { text: "Oh no!", nextScene: "No" },
         { text: "Whatever.", nextScene: "Whatever" }
       ]
     },
     No: {
-      text: "Uh-this is your Captain again. We are about to attempt a crash landing.Please extinuish all cigarettes.Place your tray tables in their upright, locked position. Your Captain says: Put your head on your knees.",
-      audio: "/visual%20novel/audio/oh-superman/hi-im-not-home.mp3",
+      image: "images/From-The-Air2.png",
+      audio: "/visual%20novel/audio/uh-cptain-attempt-knees.mp3",
       choices: [
         { text: "Ignore", nextScene: "Ignore" },
         { text: "follow instructions", nextScene: "follow" }
       ]
     },
     follow: {
-      text: "Your Captain says: Put your head on your hands.",
+      image: "images/From-The-Air2.png",
+      audio: "/visual%20novel/audio/captain-head-hands.mp3",
+
       choices: [
         { text: "Ignore", nextScene: "Ignore" },
         { text: "follow instructions", nextScene: "follow2" }
@@ -25,29 +26,33 @@ const scenes = {
     },
 
     follow2: {
-        text: "Captain says: Put your hands on your head.",
-        choices: [
+      image: "images/From-The-Air2.png",
+      audio: "/visual%20novel/audio/captain-hand-head.mp3",
+      choices: [
           { text: "Ignore", nextScene: "Ignore" },
           { text: "follow instructions", nextScene: "follow3" }
         ]
       },
 
       follow3: {
-        text: "Put your hands on your hips.",
+        image: "images/From-The-Air2.png",
+        audio: "/visual%20novel/audio/put-hands-hips.mp3",
         choices: [
           { text: "Ignore", nextScene: "Ignore" },
           { text: "follow instructions", nextScene: "follow4" }
         ]
       },
       follow4: {
-        text: "Heh heh.", 
+        image: "images/From-The-Air.png",
+        audio: "/visual%20novel/audio/heh-heh.mp3",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "Phone_4.html" },
         ]
       },
 
       Ignore: {
-        text: "This is your Captain-and we are going down.We are all going down, together.",
+        image: "images/From-The-Air3.png",
+        audio: "/visual%20novel/audio/together-jump.mp3",
         choices: [
           { text: "Put your hands over your eyes. Jump out of the plane.", nextScene: "link", isLink: true, href: "Phone_4.html" },
         
@@ -56,7 +61,8 @@ const scenes = {
 
 
       Whatever: {
-        text: "You know, I've got a funny feeling I've seen this all before.Why? Cause I'm a caveman.Why?Cause I've got eyes in the back of my head.Why?It's the heat.",
+        image: "images/From-The-Air2.png",
+        audio: "/visual%20novel/audio/you-know.mp3",
         choices: [
           { text: "Drink some water", nextScene: "water" },
           { text: "This ia all an illusion", nextScene: "illusion" }
@@ -65,14 +71,16 @@ const scenes = {
 
 
       water: {
-        text: "This is your Captain-and we are going down. Place your tray tables in their upright, locked position.", 
+        image: "images/From-The-Air.png",
+        audio: "/visual%20novel/audio/captain-going-down-traytable.mp3",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "Phone_4.html" },
         ]
       },
 
       illusion: {
-        text: "This is the time.And this is the record of the time. This is the time. There is no pilot.You are not alone.", 
+        image: "images/From-The-Air2.png",
+        audio: "/visual%20novel/audio/time-no-pilot.mp3",
         choices: [
             { text: "...", nextScene: "ignore" },
         ]
@@ -82,6 +90,7 @@ const scenes = {
 
   };
   
+
   let currentScene = "start";
   let currentAudio = null;
   
@@ -130,4 +139,3 @@ const scenes = {
   document.addEventListener("DOMContentLoaded", () => {
     showScene(currentScene);
   });
-  

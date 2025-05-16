@@ -7,5 +7,27 @@
     border-radius: 10px;
   }
 
-  
+  #choices {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  button {
+    font-family: 'Helvetica Neue';
+    padding: 10px;
+    background: url(images/schnippsel-reply.png);
+    background-size: 100% 100%; /* Consistent with choice-button */
+    border: none;
+    color: black;
+    cursor: pointer;
+ 
+    width: 50%; /* Full width of choices container */
+    box-sizing: border-box; /* Include padding in width calculation */
+    min-height: 12dvh;
+    font-size: 4rem;
+    font-weight: 700;
+    text-shadow: 4px 4px gray;
+    margin-bottom: 20px;
+  }
   
