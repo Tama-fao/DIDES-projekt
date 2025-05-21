@@ -1,71 +1,60 @@
 const scenes = {
-    start: {
-      image: "/visual%20novel/images/High_Five.png", // das hier fehlt!
-      choices: [
-        { text: "High Five to Start", nextScene: "link", isLink: true, href: "Phone_1.html" },
-      ]
-    },
-  };
+  start: {
+    image: "/visual%20novel/images/High_Five.png",
+    text: "High Five to enter", // Kein Text gewünscht
+  },
+};
 
-let currentScene = "start";
 let currentAudio = null;
 
 function showScene(sceneKey) {
   const scene = scenes[sceneKey];
   const dialogue = document.getElementById("dialogue");
-  const sceneImage = document.getElementById("scene-image");
+  const sceneImageLeft = document.getElementById("scene-image");
+  const sceneImageRight = document.getElementById("scene-image2");
   const choicesContainer = document.getElementById("choices");
 
-  const leftImage = document.getElementById("scene-image");
-  const rightImage = document.getElementById("scene-image2");
-
-  leftImage.addEventListener("click", moveImages);
-  rightImage.addEventListener("click", moveImages);
-
-  function moveImages() {
-    leftImage.classList.add("move-left");
-    rightImage.classList.add("move-right");
-  }
-
-
+  // Stop previous audio
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
   }
-  
-  // Play new audio if specified in the scene
+
+  // Play audio if available
   if (scene.audio) {
     currentAudio = new Audio(scene.audio);
     currentAudio.loop = scene.loopAudio || false;
     currentAudio.play().catch(e => console.log("Audio play failed:", e));
   }
 
-  // Set the text and image
-  dialogue.textContent = scene.text;
-  dialogue.style.transform = "translateY(0)"; // Ensure text is visible
-  sceneImage.style.backgroundImage = `url('${scene.image}')`;
-  document.getElementById("scene-image2").style.backgroundImage = `url('${scene.image}')`;
+  // Set background images
+  sceneImageLeft.style.backgroundImage = `url('${scene.image}')`;
+  sceneImageRight.style.backgroundImage = `url('${scene.image}')`;
 
-  
-  // Set image clickability for start scene
-  sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
-  sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
-  
-  // Handle choices
+  // Set text
+  dialogue.textContent = scene.text || "";
+
+  // Clear choices
   choicesContainer.innerHTML = "";
-  if (scene.choices) {
-    scene.choices.forEach(choice => {
-      const button = document.createElement("button");
-      button.textContent = choice.text;
-      button.onclick = choice.isLink 
-        ? () => (window.location.href = choice.href)
-        : () => showScene(choice.nextScene);
-      choicesContainer.appendChild(button);
-    });
+
+  // Enable animation and redirect on click
+  function moveImages() {
+    sceneImageLeft.classList.add("move-left");
+    sceneImageRight.classList.add("move-right");
+
+    // Verhindert mehrfaches Klicken
+    sceneImageLeft.removeEventListener("click", moveImages);
+    sceneImageRight.removeEventListener("click", moveImages);
+
+    setTimeout(() => {
+      window.location.href = "phone_1.html";
+    }, 1200); // 1 Sekunde für die CSS Transition
   }
+
+  sceneImageLeft.addEventListener("click", moveImages);
+  sceneImageRight.addEventListener("click", moveImages);
 }
 
-// Initialize
 document.addEventListener("DOMContentLoaded", () => {
-  showScene(currentScene);
+  showScene("start");
 });

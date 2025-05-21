@@ -1,5 +1,5 @@
 #scene-image {
-    background-image: url("High_Five.png");
+    background-image: url("/visual%20novel/images/High_Five.png");
     background-size: cover; /* passt das Bild an */
     background-position: center;
     background-repeat: no-repeat;
@@ -13,7 +13,7 @@
 }
 
 #scene-image2 {
-    background-image: url("High_Five.png");
+    background-image: url("/visual%20novel/images/High_Five.png");
     background-size: cover; /* passt das Bild an */
     background-position: center;
     background-repeat: no-repeat;
@@ -27,10 +27,48 @@
     transition: transform 0.8s ease;
 }
 
+#choice-button {
+    position: fixed;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #choice-button-top {
+    
+    position: fixed;
+    top: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 120%;
+    display: flex;
+    justify-content: center;
+}
+
+#top-high-five-button {
+    font-family: 'Helvetica Neue';
+    font-size: 6rem; /* Passe den Wert nach Wunsch an */
+}
+
+#Titel-text {
+    font-family: 'Helvetica Neue';
+    font-size: 2rem; /* Passe den Wert nach Wunsch an */
+    color: white;
+    text-align: center;
+    
+}
+  
+  
+
 .move-left {
-    transform: translateX(24dvw) !important;
+    transform: translateX(15dvw) !important;
 }
 
 .move-right {
-    transform: scaleX(-1) translateX(24dvw) !important;
+    transform: scaleX(-1) translateX(15dvw) !important;
 }

@@ -60,6 +60,7 @@ body {
 
 
 button {
+  text-transform: uppercase;
   font-family: 'Helvetica Neue';
   padding: 10px;
   background: url(images/schnippsel-choice.png);
@@ -73,7 +74,7 @@ button {
   min-height: 12dvh;
   font-size: 1.5rem;
   font-weight: 700;
-  text-shadow: 4px 4px gray;
+ /* text-shadow: 4px 4px gray;*/
   margin-bottom: 20px;
 }
 
