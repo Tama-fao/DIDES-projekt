@@ -1,6 +1,6 @@
 
-#image {
-    background-image: url("From-The-Air3.png");
+#scene-image {
+    background-image: url("images/From-The-Air3.png");
     background-size: cover; /* passt das Bild an */
     background-position: center;
     background-repeat: no-repeat;
@@ -11,6 +11,8 @@
     height: 100%;
     z-index: -1;
   }
+
+ 
   
   body {
     color: rgb(0, 0, 0);
@@ -19,3 +21,7 @@
   
 
   
+  button {
+    
+    text-shadow: 2px 2px #4BD8FC;
+  }
