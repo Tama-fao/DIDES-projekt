@@ -39,19 +39,22 @@
   }
 
   .person {
-    display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 2fr;
-        height: 100dvh;
-        width: 100dvw;
-        z-index: -1;
+    display: none; /* Hide by default */
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    height: 100dvh;
+    width: 100dvw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Behind everything */
     }
 
   #scene-image-man1{
     grid-area: 3 / 1 / 4 / 2;
     background-image: url(images/crazy-man-body.png);
     background-size: 90%;
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
     position: relative;
     bottom: 0;
@@ -61,7 +64,20 @@
    
 }
 
-  #scene-image-man2{
+/* Add this to your CSS */
+@keyframes wiggle {
+  0%, 100% { transform: translate(0px, 25px) rotate(0deg); }
+  25% { transform: translate(0px, 25px) rotate(8deg); }
+  50% { transform: translate(0px, 25px) rotate(-8deg); }
+  75% { transform: translate(0px, 25px) rotate(8deg); }
+}
+
+.wiggling {
+  animation: wiggle 0.5s infinite 1s;
+}
+
+/* Keep your existing #scene-image-man2 styles but remove transform */
+#scene-image-man2 {
     grid-area: 2 / 1 / 3 / 2;
     background-image: url(images/crazy-man-head.png);
     background-size: 90%;
@@ -72,7 +88,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-  
     align-items: end;
-    transform: translate(0px, 17px);
+    transform: translate(0px, 34px);
 }
+
+

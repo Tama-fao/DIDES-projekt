@@ -10,7 +10,7 @@ const scenes = {
 
     mitten: {
       audio: "/visual%20novel/audio/big-science/here-is-a-man.mp3",
-      image: "images/Big-Science2.png",
+      image: "images/Big-Science.png",
 
       choices: [
         { text: "Don't be a stranger", nextScene: "stranger" },
@@ -100,7 +100,7 @@ const scenes = {
 
         audio: "/visual%20novel/audio/big-science/hey-professor.mp3",
         choices: [
-            { text: "Thanks for the ride.", nextScene: "link", isLink: true, href: "Phone3.html" },
+            { text: "Thanks for the ride.", nextScene: "title"  },
         ]
       },
 
@@ -113,9 +113,17 @@ const scenes = {
         ]
       },
 
+      title: {
+        image: "images/Big-Science-title.png",
+        choices: [
+          { text: "...",  nextScene: "link", isLink: true, href: "Phone_3.html"},
+        ]
+      },
+
   };
   
- 
+const wiggleScenes = ["stranger", "aye", "nay", "stairs", "what", "Ride", "Sure", "directions"];
+
 let currentScene = "start";
 let currentAudio = null;
 
@@ -124,29 +132,48 @@ function showScene(sceneKey) {
   const dialogue = document.getElementById("dialogue");
   const sceneImage = document.getElementById("scene-image");
   const choicesContainer = document.getElementById("choices");
+  const personDiv = document.querySelector('.person');
+  const manHead = document.getElementById('scene-image-man2');
 
+  // Show/hide the person based on scene
+  if (sceneKey === "start" || sceneKey === "mitten" || sceneKey === "title"){
+    personDiv.style.display = 'none';
+  } else {
+    personDiv.style.display = 'grid';
+  }
+
+  // Control wiggle animation
+  if (wiggleScenes.includes(sceneKey)) {
+    manHead.classList.add('wiggling');
+  } else {
+    manHead.classList.remove('wiggling');
+  }
+
+  // Audio handling (keep your existing code)
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
   }
   
-  // Play new audio if specified in the scene
   if (scene.audio) {
     currentAudio = new Audio(scene.audio);
     currentAudio.loop = scene.loopAudio || false;
     currentAudio.play().catch(e => console.log("Audio play failed:", e));
+    
+    // Stop wiggle when audio ends
+    currentAudio.addEventListener('ended', () => {
+      manHead.classList.remove('wiggling');
+    });
   }
 
-  // Set the text and image
+  // Rest of your existing showScene function...
   dialogue.textContent = scene.text;
-  dialogue.style.transform = "translateY(0)"; // Ensure text is visible
+  dialogue.style.transform = "translateY(0)";
   sceneImage.style.backgroundImage = `url('${scene.image}')`;
   
-  // Set image clickability for start scene
   sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
   sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
   
-  // Handle choices
   choicesContainer.innerHTML = "";
   if (scene.choices) {
     scene.choices.forEach(choice => {
