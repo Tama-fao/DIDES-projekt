@@ -10,6 +10,7 @@ const scenes = {
     },
     Care: {
       audio: "/visual%20novel/audio/Walk_The_Dog/I_on_Fire.mp3",
+      image: "/visual%20novel/images/Walk_The_Dog/Dog_003.png",
       choices: [
         { text: "Ok, so?", nextScene: "Ok" },
         { text: "I'm Sorry...", nextScene: "Sorry" }
@@ -17,6 +18,7 @@ const scenes = {
     },
     Cool: {
       audio: "/visual%20novel/audio/Walk_The_Dog/Dog_Cinema_001.mp3",
+      image: "/visual%20novel/images/Walk_The_Dog/Dog_001.png",
       choices: [
         { text: "Who cares.", nextScene: "Ok" },
         { text: "I love Dogs too!", nextScene: "Sorry" }
@@ -24,12 +26,14 @@ const scenes = {
     },
     Ok: {
       audio: "/visual%20novel/audio/Walk_The_Dog/I_feel_so_bad.mp3",
+      image: "/visual%20novel/images/Walk_The_Dog/Dog_003.png",
       choices: [
         { text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },
       ]
     },
     Sorry: {
       audio: "/visual%20novel/audio/Walk_The_Dog/I_walk_the_dog.mp3",
+      image: "/visual%20novel/images/Walk_The_Dog/Dog_002.png",
       choices: [{ text: "...", nextScene: "link", isLink: true, href: "Phone_2.html" },]
     },
 
