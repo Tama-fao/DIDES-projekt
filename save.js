@@ -134,10 +134,6 @@ function showScene(sceneKey) {
   const choicesContainer = document.getElementById("choices");
   const personDiv = document.querySelector('.person');
   const manHead = document.getElementById('scene-image-man2');
-  const gameContainer = document.getElementById('game-container');
-  const personFullDiv = document.querySelector('.person-full');
-
-
 
   // Show/hide the person based on scene
   if (sceneKey === "start" || sceneKey === "mitten" || sceneKey === "title"){
@@ -145,21 +141,6 @@ function showScene(sceneKey) {
   } else {
     personDiv.style.display = 'grid';
   }
-
-  if (sceneKey === "mitten") {
-    personFullDiv.style.display = 'grid';
-    personDiv.style.display = 'none'; // Ensure the split person is hidden
-  } else {
-    personFullDiv.style.display = 'none';
-  }
-
-gameContainer.classList.remove('scene-mitten', 'scene-stranger');
-if (sceneKey === "mitten") {
-  gameContainer.classList.add('scene-mitten');
-} else if (sceneKey === "stranger") {
-  gameContainer.classList.add('scene-stranger');
-}
-
 
   // Control wiggle animation
   if (wiggleScenes.includes(sceneKey)) {
