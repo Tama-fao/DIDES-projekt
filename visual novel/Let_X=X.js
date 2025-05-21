@@ -65,7 +65,7 @@ const scenes = {
     },
     time: {
       audio: "/visual%20novel/audio/Let_X=X/burning_building_ganz.mp3",
-      image: "/visual%20novel/images/Let_X=X/LetX=X_002.png",
+      image: "/visual%20novel/images/Let_X=X/LetX=X_003.png",
         choices: [
             { text: "...", nextScene: "link", isLink: true, href: "phone5.html" },
         ]
