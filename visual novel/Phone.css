@@ -30,6 +30,40 @@
     text-shadow: 4px 4px gray;
     margin-bottom: 20px;
   }
+
+  #fly-in-images {
+    position: fixed; /* <- fixiert auf Bildschirm */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10; /* <- sichtbar über allem */
+  }
+  
+  
+  .fly-image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+  }
+  
+  #img-left   { top: 50vh; left: -30vw; transform: translateY(-50%); }
+  #img-right  { top: 50vh; right: -30vw; transform: translateY(-50%); }
+  #img-top    { top: -30vh; left: 50vw; transform: translateX(-50%); }
+  #img-bottom { bottom: -30vh; left: 50vw; transform: translateX(-50%); }
+  
+  .fly-in {
+    opacity: 1;
+  }
+  
+  #img-left.fly-in   { transform: translate(30vw, -50%); }
+  #img-right.fly-in  { transform: translate(-30vw, -50%); }
+  #img-top.fly-in    { transform: translate(-50%, 30vh); }
+  #img-bottom.fly-in { transform: translate(-50%, -30vh); }
+  
   
 
 

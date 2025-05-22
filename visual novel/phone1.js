@@ -69,4 +69,11 @@ function showScene(sceneKey) {
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
   showScene(currentScene);
+  function triggerFlyIns() {
+    setTimeout(() => document.getElementById("img-left").classList.add("fly-in"), 500);
+    setTimeout(() => document.getElementById("img-right").classList.add("fly-in"), 1000);
+    setTimeout(() => document.getElementById("img-top").classList.add("fly-in"), 1500);
+    setTimeout(() => document.getElementById("img-bottom").classList.add("fly-in"), 2000);
+  }
+  
 });
