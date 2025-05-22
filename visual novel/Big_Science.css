@@ -61,6 +61,8 @@
     left: 0;
     width: 100%;
     height: 100%;
+    transform: translate(0px, 0px); /* Default position */
+
    
 }
 
@@ -143,4 +145,203 @@
 .scene-stranger #choices button {
   font-size: 2em; /* Double the size */
   padding: 10px 20px; /* Adjust padding to accommodate larger text */
+}
+
+/* Add this to Big_Science.css */
+@keyframes grow-head {
+  0% { 
+    transform: translate(0px, 34px) scale(1);
+  }
+  100% { 
+    transform: translate(0px, 34px) scale(1.8);
+  }
+}
+
+@keyframes grow-body {
+  0% { 
+    transform: translate(0px, 10px) scale(1);
+  }
+  100% { 
+    transform: translate(0px, 340px) scale(1.8); /* Moves body down while growing */
+  }
+}
+
+.growing-head {
+  animation: grow-head 38s ease-in-out forwards;
+  transform-origin: bottom center;
+}
+
+.growing-body {
+  animation: grow-body 38s ease-in-out forwards;
+  transform-origin: bottom center;
+}
+
+
+.shapes {
+  display: none; /* Hide by default */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr ;
+  height: 100dvh;
+  width: 100dvw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -2; /* Behind everything */
+  
+}
+
+
+ 
+#shape1{
+  grid-area: 1 / 1 / 2 / 2;
+  background-image: url(images/yellow-shape3.png);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0px, 0px); /* Default position */
+}
+
+#shape2{
+  grid-area: 1 / 1 / 2 / 2;
+  background-image: url(images/yellow-shape2.png);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0px, 0px); /* Default position */
+}
+
+#shape3{
+  grid-area: 1 / 1 / 2 / 2;
+  background-image: url(images/yellow-shape1.png);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0px, 0px); /* Default position */
+}
+
+
+/* Add these new keyframes for floating animations */
+@keyframes float-shape1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-shape2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+@keyframes float-shape3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-40px); }
+}
+
+/* Add these animation classes */
+.floating-shape1 {
+  animation: float-shape1 3s ease-in-out infinite;
+}
+
+.floating-shape2 {
+  animation: float-shape2 4s ease-in-out infinite;
+}
+
+.floating-shape3 {
+  animation: float-shape3 5s ease-in-out infinite;
+}
+
+
+.owl {
+  display: none; /* Hide by default */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 100dvh;
+  width: 100dvw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Higher than background but below text */
+}
+
+#scene-normal-man,
+#scene-eye-man,
+#scene-owl-man {
+  grid-area: 1 / 1 / 2 / 2;
+  background-size: 80%;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#scene-normal-man,
+#scene-eye-man,
+#scene-owl-man {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  position: absolute;
+}
+
+.owl-show-normal #scene-normal-man {
+  animation: fadeIn 1s ease-in 0s forwards;
+}
+
+.owl-show-eyes #scene-eye-man {
+  animation: fadeIn 1s ease-in 2s forwards;
+}
+
+.owl-show-final #scene-owl-man {
+  animation: fadeIn 1s ease-in 4s forwards;
+}
+
+
+/* Snow effect */
+.snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  display: none; /* Hidden by default */
+}
+
+.snow {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: falling linear infinite;
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(-10px) translateX(0px);
+  }
+  100% {
+    transform: translateY(calc(100vh + 10px)) translateX(calc(var(--random-x) * 100px));
+  }
 }
