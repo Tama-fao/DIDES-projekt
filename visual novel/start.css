@@ -5,11 +5,11 @@
     background-repeat: no-repeat;
     position: fixed; /* Immer am gleichen Ort im Viewport */
     top: 0;
-    left: -50dvw;
+    left: -70dvw;
     width: 100%;
     height: 100%;
     z-index: 1;
-    transition: transform 0.8s ease;
+    transition: transform 0.8s ;
 }
 
 #scene-image2 {
@@ -19,12 +19,12 @@
     background-repeat: no-repeat;
     position: fixed; /* Immer am gleichen Ort im Viewport */
     top: 0;
-    right: -50dvw;
+    right: -70dvw;
     width: 100%;
     height: 100%;
     transform: scaleX(-1);
     z-index: 1;
-    transition: transform 0.8s ease;
+    transition: transform 0.8s ;
 }
 
 #choice-button {
@@ -52,7 +52,7 @@
 
 #top-high-five-button {
     font-family: 'Helvetica Neue';
-    font-size: 6rem; /* Passe den Wert nach Wunsch an */
+    font-size: 4rem; /* Passe den Wert nach Wunsch an */
 }
 
 #Titel-text {
@@ -66,9 +66,9 @@
   
 
 .move-left {
-    transform: translateX(15dvw) !important;
+    transform: translateX(26dvw) !important;
 }
 
 .move-right {
-    transform: scaleX(-1) translateX(15dvw) !important;
+    transform: scaleX(-1) translateX(26dvw) !important;
 }

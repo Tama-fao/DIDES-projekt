@@ -9,12 +9,14 @@
 
   #choices {
     display: flex;
+    top: 3vh;
     justify-content: center;
     flex-direction: row;
   }
 
   button {
     font-family: 'Helvetica Neue';
+    top: 3vh;
     padding: 10px;
     background: url(images/schnippsel-reply.png);
     background-size: 100% 100%; /* Consistent with choice-button */
@@ -32,38 +34,50 @@
   }
 
   #fly-in-images {
-    position: fixed; /* <- fixiert auf Bildschirm */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100dvw; 
+    height: 100dvh;
     pointer-events: none;
-    z-index: 10; /* <- sichtbar über allem */
+    z-index: 9999;
   }
+  
   
   
   .fly-image {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    opacity: 0;
-    transition: transform 1s ease-out, opacity 1s ease-out;
+    transition: transform 1s, opacity 1s;
   }
   
-  #img-left   { top: 50vh; left: -30vw; transform: translateY(-50%); }
-  #img-right  { top: 50vh; right: -30vw; transform: translateY(-50%); }
-  #img-top    { top: -30vh; left: 50vw; transform: translateX(-50%); }
-  #img-bottom { bottom: -30vh; left: 50vw; transform: translateX(-50%); }
+  #img-left   { 
+    width: 140vw;
+    height: 40vh;
+    top: 82vh; left: -140vw; transform: translateY(-50%); }
+  #img-right  { 
+    width: 100dvw;
+    height: 40dvh;
+    top: 80vh; right: -100vw; transform: translateY(-50%) rotate(-90deg); }
+  #img-top    { 
+    width: 100dvw;
+    height: 35dvh;
+    top: -40vh; left: 50vw; transform: translateX(-50%) rotate(180deg); }
+  #img-bottom { 
+    width: 180dvw;
+    height: 60dvh;
+    bottom: -60vh; left: 50vw; transform: translateX(-50%); }
   
-  .fly-in {
-    opacity: 1;
-  }
+  #img-left.fly-in   { transform: translate(100vw, -50%); }
+  #img-right.fly-in  { transform: translate(-100vw, -50%) rotate(-90deg); }
+  #img-top.fly-in    { transform: translate(-50%, 40vh) rotate(180deg); }
+  #img-bottom.fly-in { transform: translate(-50%, -60vh); }
   
-  #img-left.fly-in   { transform: translate(30vw, -50%); }
-  #img-right.fly-in  { transform: translate(-30vw, -50%); }
-  #img-top.fly-in    { transform: translate(-50%, 30vh); }
-  #img-bottom.fly-in { transform: translate(-50%, -30vh); }
-  
+  /* Fly-out states */
+  #img-left.fly-out   { transform: translate(-30vw, -50%); }
+  #img-right.fly-out  { transform: translate(30vw, -50%) rotate(-90deg); }
+  #img-top.fly-out    { transform: translate(-50%, -30vh)rotate(180deg); }
+  #img-bottom.fly-out { transform: translate(-50%, 60vh); }
+
   
 
 
