@@ -48,7 +48,21 @@ function showScene(sceneKey) {
   }
 
   choicesContainer.innerHTML = "";
-  if (scene.choices) {
+
+if (scene.choices) {
+  if (currentAudio) {
+    currentAudio.addEventListener("ended", () => {
+      scene.choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.textContent = choice.text;
+        button.onclick = choice.isLink 
+          ? () => (window.location.href = choice.href)
+          : () => showScene(choice.nextScene);
+        choicesContainer.appendChild(button);
+      });
+    });
+  } else {
+    // Falls kein Audio da ist, sofort anzeigen
     scene.choices.forEach(choice => {
       const button = document.createElement("button");
       button.textContent = choice.text;
@@ -58,6 +72,8 @@ function showScene(sceneKey) {
       choicesContainer.appendChild(button);
     });
   }
+}
+
 
   // Trigger fly-in on specific scene, e.g. pickup
   if (sceneKey === "pickup") triggerFlyIns();

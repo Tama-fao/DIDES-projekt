@@ -1,0 +1,66 @@
+#Titel-text {
+    font-family: 'Helvetica Neue';
+    font-size: 1.5rem; /* Passe den Wert nach Wunsch an */
+    color: white;
+    text-align: center;
+    
+}
+
+#top-high-five-button {
+    font-family: 'Helvetica Neue';
+    font-size: 4rem; /* Passe den Wert nach Wunsch an */
+}
+
+#choice-button-top {
+    
+    position: fixed;
+    top: 43vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 120%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    z-index: 9;
+}
+
+@keyframes toggleColor {
+    0% {
+      filter: grayscale(100%);
+    }
+    25% {
+      filter: grayscale(0%);
+    }
+    75% {
+      filter: grayscale(0%);
+    }
+    100% {
+      filter: grayscale(100%);
+    }
+  }
+  
+  .logo1, .logo2, .logo3 {
+      position: absolute;
+      width: 25dvw;
+      height: 12dvh;
+      bottom: 38%;
+      animation: toggleColor 3s infinite ease-in-out;
+  }
+  
+  
+  .logo1 {
+      z-index: 10;
+      /* deine Positionierung */
+  }
+  
+  .logo2 {
+      left: 39%;
+      z-index: 11;
+  }
+  
+  .logo3 {
+      right: 4%;
+      z-index: 12;
+  }
+  

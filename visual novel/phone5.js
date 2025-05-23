@@ -40,17 +40,47 @@ function showScene(sceneKey) {
   
   // Handle choices
   choicesContainer.innerHTML = "";
+
   if (scene.choices) {
-    scene.choices.forEach(choice => {
-      const button = document.createElement("button");
-      button.textContent = choice.text;
-      button.onclick = choice.isLink 
-        ? () => (window.location.href = choice.href)
-        : () => showScene(choice.nextScene);
-      choicesContainer.appendChild(button);
-    });
+    if (currentAudio) {
+      currentAudio.addEventListener("ended", () => {
+        scene.choices.forEach(choice => {
+          const button = document.createElement("button");
+          button.textContent = choice.text;
+          button.onclick = choice.isLink 
+            ? () => (window.location.href = choice.href)
+            : () => showScene(choice.nextScene);
+          choicesContainer.appendChild(button);
+        });
+      });
+    } else {
+      // Falls kein Audio da ist, sofort anzeigen
+      scene.choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.textContent = choice.text;
+        button.onclick = choice.isLink 
+          ? () => (window.location.href = choice.href)
+          : () => showScene(choice.nextScene);
+        choicesContainer.appendChild(button);
+      });
+    }
   }
 }
+  
+function triggerFlyIns() {
+  const bottom = document.getElementById("img-bottom");
+
+  [bottom].forEach(img => {
+    img.classList.remove("fly-in", "fly-out");
+  });
+
+  // Fly in
+  setTimeout(() => {
+    bottom.classList.add("fly-in");
+    setTimeout(() => bottom.classList.add("fly-out"), 18000);
+  }, 41000);
+}
+
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
