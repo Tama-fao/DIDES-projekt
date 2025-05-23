@@ -1,4 +1,3 @@
-// phone1.js
 const scenes = {
   start: {
     image: "images/phone.png",
@@ -28,20 +27,16 @@ function showScene(sceneKey) {
     currentAudio.pause();
     currentAudio = null;
   }
-  
-  // Play new audio if specified in the scene
+
   if (scene.audio) {
     currentAudio = new Audio(scene.audio);
     currentAudio.loop = scene.loopAudio || false;
     currentAudio.play().catch(e => console.log("Audio play failed:", e));
   }
 
-  // Set the text and image
-  dialogue.textContent = scene.text;
-  dialogue.style.transform = "translateY(0)";
+  dialogue.textContent = scene.text || "";
   sceneImage.style.backgroundImage = `url('${scene.image}')`;
-  
-  // Add or remove vibration class based on scene
+
   if (sceneKey === "start") {
     sceneImage.classList.add("vibrating");
     sceneImage.style.cursor = "pointer";
@@ -51,8 +46,7 @@ function showScene(sceneKey) {
     sceneImage.style.cursor = "default";
     sceneImage.onclick = null;
   }
-  
-  // Handle choices
+
   choicesContainer.innerHTML = "";
   if (scene.choices) {
     scene.choices.forEach(choice => {
@@ -64,16 +58,45 @@ function showScene(sceneKey) {
       choicesContainer.appendChild(button);
     });
   }
+
+  // Trigger fly-in on specific scene, e.g. pickup
+  if (sceneKey === "pickup") triggerFlyIns();
 }
 
-// Initialize
+function triggerFlyIns() {
+  const left = document.getElementById("img-left");
+  const right = document.getElementById("img-right");
+  const top = document.getElementById("img-top");
+  const bottom = document.getElementById("img-bottom");
+
+  [left, right, top, bottom].forEach(img => {
+    img.classList.remove("fly-in", "fly-out");
+  });
+
+  // Fly in
+  setTimeout(() => {
+    left.classList.add("fly-in");
+    setTimeout(() => left.classList.add("fly-out"), 8500);
+  }, 10);
+
+  setTimeout(() => {
+    right.classList.add("fly-in");
+    setTimeout(() => right.classList.add("fly-out"), 8000);
+  }, 17800);
+
+  setTimeout(() => {
+    top.classList.add("fly-in");
+    setTimeout(() => top.classList.add("fly-out"), 5000);
+  }, 35000);
+
+  setTimeout(() => {
+    bottom.classList.add("fly-in");
+    setTimeout(() => bottom.classList.add("fly-out"), 18000);
+  }, 41000);
+}
+
+
+// Initialize once
 document.addEventListener("DOMContentLoaded", () => {
   showScene(currentScene);
-  function triggerFlyIns() {
-    setTimeout(() => document.getElementById("img-left").classList.add("fly-in"), 500);
-    setTimeout(() => document.getElementById("img-right").classList.add("fly-in"), 1000);
-    setTimeout(() => document.getElementById("img-top").classList.add("fly-in"), 1500);
-    setTimeout(() => document.getElementById("img-bottom").classList.add("fly-in"), 2000);
-  }
-  
 });
