@@ -75,7 +75,7 @@
 }
 
 .wiggling {
-  animation: wiggle 0.5s infinite 1s;
+  animation: wiggle 0.5s infinite 2s;
 }
 
 /* Keep your existing #scene-image-man2 styles but remove transform */
@@ -107,6 +107,7 @@
   z-index: -1; /* Behind everything */
   }
 
+  /*
 #scene-image-man3 {
   grid-area: 2 / 1 / 4 / 2;
   background-image: url(images/crazy-man-full.png);
@@ -121,6 +122,44 @@
   height: 100%;
   align-items: end;
   z-index: -1;
+}
+
+*/
+
+
+/* Add these new animations for man3 */
+@keyframes slideInFromRight {
+  0% {
+    transform: translate(300px, 0px) rotate(-90deg);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(120px, 0px) rotate(90deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120px, 0px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Update the #scene-image-man3 styles */
+#scene-image-man3 {
+  grid-area: 2 / 1 / 4 / 2;
+  background-image: url(images/crazy-man-full.png);
+  background-size: 50%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  transform: translate(120px, 0px);
+  width: 100%;
+  height: 100%;
+  align-items: end;
+  z-index: -1;
+  opacity: 1; /* Start invisible */
+  animation: slideInFromRight 2s ease-out forwards 2s;
 }
 
 
@@ -141,10 +180,30 @@
   top: 20px;
 }
 
-/* Add this to your CSS */
+/* Update the existing .scene-stranger #choices button styles */
+.scene-stranger #choices {
+  flex-direction: column;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 300px; /* Increased from 10px to 30px for more space between buttons */
+  padding: 20px 0; /* Add some vertical padding */
+}
+
 .scene-stranger #choices button {
-  font-size: 2em; /* Double the size */
-  padding: 10px 20px; /* Adjust padding to accommodate larger text */
+  font-size: 2em;
+  padding: 15px 30px; /* Increased padding for larger click area */
+  margin: 0 auto; /* Center each button horizontally */
+  width: 80%; /* Make buttons wider but still centered */
+  max-width: 400px; /* Maximum width for very large screens */
+  text-align: center;
+  display: block; /* Ensure each button is on its own line */
+}
+
+/* Optional: Add a smooth hover effect */
+.scene-stranger #choices button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }
 
 /* Add this to Big_Science.css */
@@ -253,15 +312,15 @@
 
 /* Add these animation classes */
 .floating-shape1 {
-  animation: float-shape1 3s ease-in-out infinite;
+  animation: float-shape1 3s ease-in-out infinite 5s;
 }
 
 .floating-shape2 {
-  animation: float-shape2 4s ease-in-out infinite;
+  animation: float-shape2 4s ease-in-out infinite 5s;
 }
 
 .floating-shape3 {
-  animation: float-shape3 5s ease-in-out infinite;
+  animation: float-shape3 5s ease-in-out infinite 5s;
 }
 
 
@@ -307,34 +366,7 @@
 
 
 
-/* Snow effect */
-.snow-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  display: none; /* Hidden by default */
-}
 
-.snow {
-  position: absolute;
-  background-color: white;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: falling linear infinite;
-}
-
-@keyframes falling {
-  0% {
-    transform: translateY(-10px) translateX(0px);
-  }
-  100% {
-    transform: translateY(calc(100vh + 10px)) translateX(calc(var(--random-x) * 100px));
-  }
-}
 
 
 .taube {
@@ -342,26 +374,159 @@
   width: 50px; 
   height: auto;
   z-index: -1; 
-  pointer-events: none;
-  display: none; 
+ 
   animation: flyAcross 15s linear infinite;
-  transform: scaleY(-1); 
+  transform: scaleX(-1); 
 
   
 }
+
+
+
+/* Add this to Big_Science.css 
+.snow-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+}
+
+.snow-container img {
+  position: absolute;
+  width: 50px; 
+  animation: flySnowAcross 15s linear forwards;
+  transform: scaleX(-1); Flip horizontally for opposite direction 
+}
+
+*/
+
+/* Update the taube animation */
+.taube {
+  position: fixed;
+  width: 50px; 
+  height: auto;
+  z-index: -1;
+  left: -100px; /* Start off-screen left */
+  top: 30%; /* Adjust this for vertical position */
+  animation: flyAcross 7s linear forwards 2s;
+  transform: scaleX(-1); /* Remove flip for left-to-right */
+  display: none; /* Hidden by default */
+}
+
+/* Update snow animation */
+.snow-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: none; /* Hidden by default */
+}
+
+.snow-container img {
+  position: absolute;
+  width: 50px;
+  right: -100px; /* Start off-screen right */
+  bottom: 20%; /* Lower position than taube */
+  animation: flySnowAcross 5s linear forwards 2s;
+  transform: scaleX(-1);
+}
+
+/* Animation keyframes */
 @keyframes flyAcross {
+  0% { left: -100px; }
+  100% { left: calc(100% + 100px); }
+}
+
+@keyframes flySnowAcross {
+  0% { right: -100px; }
+  100% { right: calc(100% + 100px); }
+}
+
+
+/* Add these new styles for the title scene */
+.scene-title #text-box {
+  position: relative;
+  z-index: 10;
+}
+
+#big-text {
+  position: fixed;
+  bottom: -200px; /* Start off-screen */
+  left: 50%;
+  transform: translateX(-50%) scale(0.5);
+  width: 300px; /* Adjust based on your image size */
+  height: auto;
+  opacity: 0;
+  z-index: -1;
+  animation: floatUp 5s ease-out forwards;
+  animation-delay: 0.5s; /* Small delay before starting */
+}
+
+@keyframes floatUp {
   0% {
-    transform: translateX(-100px) translateY(var(--random-y-start));
+    bottom: -200px;
+    transform: translateX(-50%) scale(0.5);
     opacity: 0;
   }
-  10% {
-    opacity: 1;
-  }
-  90% {
+  70% {
     opacity: 1;
   }
   100% {
-    transform: translateX(calc(100vw + 100px)) translateY(var(--random-y-end));
-    opacity: 0;
+    bottom: 5%;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
   }
+}
+
+/* Hide choices initially in title scene */
+.scene-title #choices {
+  display: none !important;
+}
+
+/* Show choices after animation completes */
+.scene-title.show-choices #choices {
+  display: flex !important;
+}
+
+
+/* Add this to Big_Science.css */
+/* Add this to Big_Science.css */
+#taube3 {
+  grid-area: 2 / 1 / 3 / 2;
+  position: absolute;
+  width: 70px;
+  height: auto;
+  bottom: 34px; /* Match man2's vertical position */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -3; /* Behind man2 (man2 has z-index default of 0) */
+  opacity: 1;
+  display: none;
+}
+
+@keyframes taube3-animation {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    
+  }
+  
+  40% {
+    transform: translateX(-50%) translateY(-80px) scaleX(1);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-80px) scaleX(-1);
+  }
+  80% {
+    transform: translateX(-50%) translateY(-80px) scaleX(1);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+   
+  }
+}
+
+.taube3-animate {
+  animation: taube3-animation 8s ease-in-out forwards 8s;
+  display: block;
 }

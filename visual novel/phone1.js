@@ -9,7 +9,7 @@ const scenes = {
     image: "images/phone-pickup.png",
     audio: "/visual%20novel/audio/oh-superman/hi-im-not-home.mp3",
     choices: [
-      { text: "REPLY", nextScene: "link", isLink: true, href: "Walk_The_Dog.html" },
+      { text: "REPLY", nextScene: "link", isLink: true, href: "Big_Science.html" },
     ]
   }
 };

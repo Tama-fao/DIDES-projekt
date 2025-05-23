@@ -116,7 +116,7 @@ const scenes = {
       title: {
         image: "images/Big-Science-title.png",
         choices: [
-          { text: "...",  nextScene: "link", isLink: true, href: "Phone_3.html"},
+          { text: "...",  nextScene: "link", isLink: true, href: "Phone_5.html"},
         ]
       },
 
@@ -128,68 +128,11 @@ const scenes = {
   let currentAudio = null;
 
 
-  function animateTaube() {
-    const taube = document.querySelector('.taube');
-    if (!taube) return;
-  
-    // Only show taube in certain scenes if desired
-    const showInScenes = ["start", "mitten"];
-    if (!showInScenes.includes(currentScene)) {
-      taube.style.display = 'none';
-      return;
-    }
-  
-    taube.style.display = 'block';
-    
-    // Random vertical positions
-    const startY = Math.random() * 80 + 10; // Between 10% and 90%
-    const endY = startY + (Math.random() * 20 - 10); // Slightly different end position
-    
-    // Apply random positions
-    taube.style.setProperty('--random-y-start', `${startY}%`);
-    taube.style.setProperty('--random-y-end', `${endY}%`);
-    
-    // Random delay between flights
-    const delay = Math.random() * 10;
-    taube.style.animationDelay = `-${delay}s`;
-    
-    // Random speed
-    const duration = Math.random() * 10 + 10; // Between 10-20 seconds
-    taube.style.animationDuration = `${duration}s`;
 
 
 
 
-  }
-
-
-
-  function createSnow() {
-    const snowContainer = document.querySelector('.snow-container');
-    snowContainer.innerHTML = ''; // Clear existing snow
-    
-    // Create 100 snowflakes
-    for (let i = 0; i < 100; i++) {
-      const snowflake = document.createElement('div');
-      snowflake.classList.add('snow');
-      
-      // Random properties for each snowflake
-      const size = Math.random() * 5 + 2;
-      const duration = Math.random() * 10 + 5;
-      const delay = Math.random() * 5;
-      const randomX = Math.random() * 2 - 1; // Between -1 and 1
-      
-      snowflake.style.width = `${size}px`;
-      snowflake.style.height = `${size}px`;
-      snowflake.style.left = `${Math.random() * 100}%`;
-      snowflake.style.opacity = Math.random() * 0.5 + 0.5;
-      snowflake.style.animationDuration = `${duration}s`;
-      snowflake.style.animationDelay = `${delay}s`;
-      snowflake.style.setProperty('--random-x', randomX);
-      
-      snowContainer.appendChild(snowflake);
-    }
-  }
+ 
 
   
   function showScene(sceneKey) {
@@ -205,6 +148,67 @@ const scenes = {
     const shapesDiv = document.querySelector('.shapes');
 
 
+
+
+// In the showScene function, add this for the title scene:
+if (sceneKey === "title") {
+  // Show and animate the big text
+  const bigText = document.getElementById('big-text');
+  bigText.style.display = 'block';
+  bigText.style.animation = 'none';
+  void bigText.offsetWidth; // Trigger reflow
+  bigText.style.animation = 'floatUp 2s ease-out forwards';
+  
+  // Remove the game-container's title class if it exists
+  gameContainer.classList.remove('scene-title', 'show-choices');
+  
+  // Add title class
+  gameContainer.classList.add('scene-title');
+  
+  // After animation completes, show choices
+  bigText.addEventListener('animationend', () => {
+    gameContainer.classList.add('show-choices');
+  }, { once: true });
+} else {
+  // Hide big text in all other scenes
+  document.getElementById('big-text').style.display = 'none';
+}
+
+
+
+
+
+
+
+
+    // In the showScene function, add this code at the beginning:
+const taube = document.querySelector('.taube');
+const snowContainer = document.querySelector('.snow-container');
+const snowImg = snowContainer.querySelector('img');
+
+// Reset animations
+taube.style.display = 'none';
+snowContainer.style.display = 'none';
+taube.style.animation = 'none';
+snowImg.style.animation = 'none';
+
+// Trigger animations only in start scene
+if (sceneKey === "start") {
+  // Show and animate taube first
+  taube.style.display = 'block';
+  taube.style.animation = 'flyAcross 7s linear forwards 2s';
+  
+  // After taube finishes, show snow
+  taube.addEventListener('animationend', () => {
+    snowContainer.style.display = 'block';
+    snowImg.style.animation = 'flySnowAcross 5s linear forwards 2s';
+  }, {once: true});
+}
+
+
+
+
+
     // Show/hide the person based on scene
     if (sceneKey === "start" || sceneKey === "mitten" || sceneKey === "title" || sceneKey === "what"){
       personDiv.style.display = 'none';
@@ -212,6 +216,7 @@ const scenes = {
       personDiv.style.display = 'grid';
     }
   
+    /*
     if (sceneKey === "mitten") {
       personFullDiv.style.display = 'grid';
       personDiv.style.display = 'none'; // Ensure the split person is hidden
@@ -219,30 +224,54 @@ const scenes = {
       personFullDiv.style.display = 'none';
     }
 
+    */
+
+
+
+// Taube3 animation for stranger scene
+const taube3 = document.getElementById('taube3');
+taube3.style.display = 'none';
+taube3.style.animation = 'none';
+
+if (sceneKey === "stranger") {
+  taube3.style.display = 'block';
+  // Reset animation and trigger it after a short delay
+  setTimeout(() => {
+    taube3.style.animation = 'none';
+    void taube3.offsetWidth; // Trigger reflow
+    taube3.style.animation = 'taube3-animation 8s ease-in-out forwards 8s';
+  }, 1000);
+} else {
+  taube3.style.display = 'none';
+}
+
+
+
+
+    // In the showScene function, find the mitten scene section and modify it:
+if (sceneKey === "mitten") {
+  personFullDiv.style.display = 'grid';
+  personDiv.style.display = 'none';
+  
+  // Reset animation and trigger it
+  const man3 = document.getElementById('scene-image-man3');
+  man3.style.animation = 'none';
+  // Trigger reflow
+  void man3.offsetWidth;
+  man3.style.animation = 'slideInFromRight 2s ease-out forwards ' ;
+} else {
+  personFullDiv.style.display = 'none';
+}
+
+
+
+
      // Show shapes only in "aye" scene
      if (sceneKey === "aye") {
       shapesDiv.style.display = 'grid';
     } else {
       shapesDiv.style.display = 'none';
     }
-
-
- 
-
-
-
-
-
-  // Snow effect control
-  const snowContainer = document.querySelector('.snow-container');
-  if (sceneKey === "start" || sceneKey === "mitten") {
-    snowContainer.style.display = 'block';
-    createSnow();
-  } else {
-    snowContainer.style.display = 'none';
-  }
-
-
 
 
 
@@ -393,7 +422,7 @@ if (sceneKey === "aye") {
     sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
     sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
   
-    animateTaube();
+   
 
   
   
@@ -411,4 +440,4 @@ if (sceneKey === "aye") {
     showScene(currentScene);
   });
 
-  setInterval(animateTaube, 20000); // Re-randomize every 20 seconds
+ 
