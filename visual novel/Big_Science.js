@@ -128,6 +128,41 @@ const scenes = {
   let currentAudio = null;
 
 
+  function animateTaube() {
+    const taube = document.querySelector('.taube');
+    if (!taube) return;
+  
+    // Only show taube in certain scenes if desired
+    const showInScenes = ["start", "mitten"];
+    if (!showInScenes.includes(currentScene)) {
+      taube.style.display = 'none';
+      return;
+    }
+  
+    taube.style.display = 'block';
+    
+    // Random vertical positions
+    const startY = Math.random() * 80 + 10; // Between 10% and 90%
+    const endY = startY + (Math.random() * 20 - 10); // Slightly different end position
+    
+    // Apply random positions
+    taube.style.setProperty('--random-y-start', `${startY}%`);
+    taube.style.setProperty('--random-y-end', `${endY}%`);
+    
+    // Random delay between flights
+    const delay = Math.random() * 10;
+    taube.style.animationDelay = `-${delay}s`;
+    
+    // Random speed
+    const duration = Math.random() * 10 + 10; // Between 10-20 seconds
+    taube.style.animationDuration = `${duration}s`;
+
+
+
+
+  }
+
+
 
   function createSnow() {
     const snowContainer = document.querySelector('.snow-container');
@@ -192,6 +227,8 @@ const scenes = {
     }
 
 
+ 
+
 
 
 
@@ -231,21 +268,39 @@ const scenes = {
 
 
 
-    const owlDiv = document.querySelector('.owl');
+    // In the showScene function, replace the entire "what" scene section with:
 
-    if (sceneKey === "what") {
-      owlDiv.style.display = 'grid';
-    } else {
-      owlDiv.style.display = 'none';
-    }
+if (sceneKey === "what") {
+  const owlDiv = document.querySelector('.owl');
+  owlDiv.style.display = 'grid';
+  
+  // Reset all owl images
+  const normalMan = document.getElementById('scene-normal-man');
+  const eyeMan = document.getElementById('scene-eye-man');
+  const owlMan = document.getElementById('scene-owl-man');
+  
+  normalMan.style.opacity = '0';
+  eyeMan.style.opacity = '0';
+  owlMan.style.opacity = '0';
+  
+  // Sequence the transitions
+  // Show normal man immediately
+  normalMan.style.opacity = '1';
+  
+  // After 2 seconds, fade to eyes
+  setTimeout(() => {
+    normalMan.style.opacity = '0';
+    eyeMan.style.opacity = '1';
     
-    // Reset classes
-owlDiv.classList.remove('owl-show-normal', 'owl-show-eyes', 'owl-show-final');
-
-// Trigger animations
-setTimeout(() => owlDiv.classList.add('owl-show-normal'), 0);
-setTimeout(() => owlDiv.classList.add('owl-show-eyes'), 2000);
-setTimeout(() => owlDiv.classList.add('owl-show-final'), 4000);
+    // After another 2 seconds, fade to owl
+    setTimeout(() => {
+      eyeMan.style.opacity = '0';
+      owlMan.style.opacity = '1';
+    }, 2000);
+  }, 2000);
+} else {
+  document.querySelector('.owl').style.display = 'none';
+}
 
 
 
@@ -337,6 +392,15 @@ if (sceneKey === "aye") {
   
     sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
     sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
+  
+    animateTaube();
+
+  
+  
+  
+  
+  
+  
   }
 
 
@@ -346,3 +410,5 @@ if (sceneKey === "aye") {
   document.addEventListener("DOMContentLoaded", () => {
     showScene(currentScene);
   });
+
+  setInterval(animateTaube, 20000); // Re-randomize every 20 seconds
