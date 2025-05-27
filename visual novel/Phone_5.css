@@ -49,6 +49,10 @@
     position: absolute;
     transition: transform 1s, opacity 1s;
   }
+
+  .fly-image-stockend {
+    position: absolute;
+  } 
   
 
   #img-herz    { 
@@ -64,8 +68,32 @@
   #img-herz.fly-in    { transform: translate(-50%, 95vh) ; }
   #img-arme.fly-in { transform: translate(-50%, -50vh); }
   
-  #img-herz.fly-out    { transform: translate(-50%, 170vh); }
-  #img-arme.fly-out { transform: translate(-50%, 60vh); }
+    #img-herz.fly-out {
+    animation: stockend-herz 10s steps(5, end) forwards;
+    }
+
+    #img-arme.fly-out {
+    animation: stockend-arme 10s steps(5, end) forwards;
+    }
+
+    @keyframes stockend-herz {
+    0% { transform: translate(-50%, 95vh); }
+    20% { transform: translate(-50%, 100vh); }
+    40% { transform: translate(-50%, 110vh); }
+    60% { transform: translate(-50%, 130vh); }
+    80% { transform: translate(-50%, 150vh); }
+    100% { transform: translate(-50%, 170vh); }
+    }
+
+    @keyframes stockend-arme {
+    0% { transform: translate(-50%, -50vh); }
+    20% { transform: translate(-50%, -30vh); }
+    40% { transform: translate(-50%, -10vh); }
+    60% { transform: translate(-50%, 20vh); }
+    80% { transform: translate(-50%, 40vh); }
+    100% { transform: translate(-50%, 60vh); }
+    }
+
 
   
 
