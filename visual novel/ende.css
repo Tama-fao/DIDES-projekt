@@ -26,6 +26,16 @@
     z-index: 9;
 }
 
+#choice-button {
+    position: fixed;
+    bottom: 3vh;
+    left: 75%;
+    transform: translateX(-50%);
+    z-index: 14;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+  }
 
 .laurie {
     position: absolute;
@@ -60,17 +70,17 @@
   
   
   .logo1 {
-      z-index: 10;
+      z-index: 14;
       /* deine Positionierung */
   }
   
   .logo2 {
       left: 39%;
-      z-index: 11;
+      z-index: 15;
   }
   
   .logo3 {
       right: 4%;
-      z-index: 12;
+      z-index: 16;
   }
   

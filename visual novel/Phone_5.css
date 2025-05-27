@@ -50,33 +50,22 @@
     transition: transform 1s, opacity 1s;
   }
   
-  #img-left   { 
-    width: 140vw;
-    height: 40vh;
-    top: 82vh; left: -140vw; transform: translateY(-50%); }
-  #img-right  { 
-    width: 100dvw;
-    height: 40dvh;
-    top: 80vh; right: -100vw; transform: translateY(-50%) rotate(-90deg); }
-  #img-top    { 
-    width: 75dvw;
+
+  #img-herz    { 
+    width: 60dvw;
     height: 25dvh;
-    top: -40vh; left: 50vw; transform: translateX(-50%) rotate(180deg); }
-  #img-bottom { 
-    width: 180dvw;
-    height: 60dvh;
+    top: -40vh; left: 50vw; transform: translateX(-50%); }
+  #img-arme { 
+    width: 110dvw;
+    height: 40dvh;
     bottom: -60vh; left: 50vw; transform: translateX(-50%); }
   
-  #img-left.fly-in   { transform: translate(100vw, -50%); }
-  #img-right.fly-in  { transform: translate(-100vw, -50%) rotate(-90deg); }
-  #img-top.fly-in    { transform: translate(-50%, 40vh) rotate(180deg); }
-  #img-bottom.fly-in { transform: translate(-50%, -60vh); }
+
+  #img-herz.fly-in    { transform: translate(-50%, 95vh) ; }
+  #img-arme.fly-in { transform: translate(-50%, -50vh); }
   
-  /* Fly-out states */
-  #img-left.fly-out   { transform: translate(-30vw, -50%); }
-  #img-right.fly-out  { transform: translate(30vw, -50%) rotate(-90deg); }
-  #img-top.fly-out    { transform: translate(-50%, -30vh)rotate(180deg); }
-  #img-bottom.fly-out { transform: translate(-50%, 60vh); }
+  #img-herz.fly-out    { transform: translate(-50%, 170vh); }
+  #img-arme.fly-out { transform: translate(-50%, 60vh); }
 
   
 
