@@ -74,11 +74,23 @@ function triggerFlyIns() {
 
   [herz, arme, laurie].forEach(img => img.classList.remove("fly-in", "fly-out"));
 
+  // Herz-Animation (neu implementiert)
   setTimeout(() => {
     herz.classList.add("fly-in");
-    setTimeout(() => herz.classList.add("fly-out"), 10000);
+    
+    // Nach dem Einfliegen (2s) Pulsieren starten
+    setTimeout(() => {
+      herz.classList.add("heartbeat");
+      
+      // Nach 10s Pulsieren beginnt das Ausfliegen
+      setTimeout(() => {
+        herz.classList.add("fly-out");
+        herz.classList.add("heartbeat-while-flying");
+      }, 10000);
+    }, 2000);
   }, 17000);
 
+  // Restliche Animationen (Arme, Laurie etc.)
   setTimeout(() => {
     arme.classList.add("fly-in");
     setTimeout(() => arme.classList.add("fly-out"), 2000);
@@ -95,17 +107,10 @@ function triggerFlyIns() {
 
   startMorphSequence();
 
-  // Hier neuer Timeout für das Bild Laurie_Hug (new-fly-in) nach z.B. 30 Sekunden
   setTimeout(() => {
     triggerNewImageFlyIn();
-  }, 30000);
-
-  setTimeout(() => {
-  triggerNewImageFlyIn();
-}, 30000);
-
+  }, 38000);
 }
-
 
 
 function triggerSlideIn() {
@@ -159,23 +164,27 @@ function triggerSlideOut() {
 
 function triggerNewImageFlyIn() {
   const newImg = document.getElementById("new-fly-in");
-  if (!newImg) {
-    console.warn("Neues Fly-In Bild (new-fly-in) nicht gefunden!");
-    return;
-  }
+  if (!newImg) return;
 
-  // Animation zurücksetzen
-  newImg.style.opacity = "0";
-  newImg.style.transform = "translateX(-50%) translateY(0) scale(0.5)";
-  newImg.style.transition = "none";
-  newImg.style.animation = "none";
+  // 1. Reset und Vorbereitung
+  newImg.style.display = 'block';
+  newImg.style.opacity = '0';
+  newImg.style.transform = 'translateX(-50%) translateY(0) scale(0.5)';
+  newImg.style.animation = 'none';
+  
+  // 2. Reflow erzwingen (wichtig!)
+  void newImg.offsetWidth;
+  
+  // 3. Animation starten (stockig mit steps(5))
+    newImg.style.animation = 'flyInSteps 4s steps(5, end) forwards';
 
-  // Animation nach kurzer Verzögerung starten
+  // 4. Rückwärtsanimation nach 4 Sekunden
   setTimeout(() => {
-    newImg.style.animation = "flyInSteps 8s steps(10, end) forwards";
-  }, 8000);
+    newImg.style.animation = 'none';
+    void newImg.offsetWidth; // Reflow
+    newImg.style.animation = 'flyOutSteps 4s steps(5, end) forwards';
+  }, 5000);
 }
-
 
 
 // Morph Sequence unverändert
@@ -234,7 +243,7 @@ function startMorphSequence() {
       setTimeout(() => {
         lastFrame.classList.remove("stockend-animation");
         lastFrame.classList.add("stockend-slide-out");
-      }, 5000);
+      }, 2000);
     }
   }
 
