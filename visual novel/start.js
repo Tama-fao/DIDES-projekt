@@ -39,28 +39,25 @@ function showScene(sceneKey) {
 
   // Enable animation and redirect on click
   function moveImages() {
-
     setTimeout(() => {
       const highFiveSound = new Audio("/visual%20novel/audio/Slap.mp3");
       highFiveSound.volume = 0.4; // 30% Lautstärke
       highFiveSound.play().catch(e => console.log("Soundeffekt konnte nicht abgespielt werden:", e));
     }, 500); // <- Delay in Millisekunden (hier: 0.3 Sekunden)
   
-
     sceneImageLeft.classList.add("move-left");
     sceneImageRight.classList.add("move-right");
 
     // Verhindert mehrfaches Klicken
-    sceneImageLeft.removeEventListener("click", moveImages);
-    sceneImageRight.removeEventListener("click", moveImages);
+    document.removeEventListener("click", moveImages);
 
     setTimeout(() => {
       window.location.href = "phone_1.html";
     }, 1200); // 1 Sekunde für die CSS Transition
   }
 
-  sceneImageLeft.addEventListener("click", moveImages);
-  sceneImageRight.addEventListener("click", moveImages);
+  // Add click event listener to the entire document
+  document.addEventListener("click", moveImages);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

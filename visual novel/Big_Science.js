@@ -216,12 +216,12 @@ snowImg.style.animation = 'none';
 if (sceneKey === "start") {
   // Show and animate taube first
   taube.style.display = 'block';
-  taube.style.animation = 'flyAcross 7s linear forwards 2s';
+  taube.style.animation = 'flyAcross 7s linear forwards 1s';
   
   // After taube finishes, show snow
   taube.addEventListener('animationend', () => {
     snowContainer.style.display = 'block';
-    snowImg.style.animation = 'flySnowAcross 5s linear forwards 2s';
+    snowImg.style.animation = 'flySnowAcross 5s linear forwards 1s';
   }, {once: true});
 }
 
@@ -259,7 +259,7 @@ if (sceneKey === "stranger") {
   setTimeout(() => {
     taube3.style.animation = 'none';
     void taube3.offsetWidth; // Trigger reflow
-    taube3.style.animation = 'taube3-animation 8s ease-in-out forwards 8s';
+    taube3.style.animation = 'taube3-animation 8s ease-in-out forwards 3s';
   }, 1000);
 } else {
   taube3.style.display = 'none';

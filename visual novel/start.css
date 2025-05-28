@@ -72,3 +72,11 @@
 .move-right {
     transform: scaleX(-1) translateX(26dvw) !important;
 }
+
+
+html, body {
+    cursor: pointer;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }

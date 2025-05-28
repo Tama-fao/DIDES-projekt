@@ -75,7 +75,7 @@
 }
 
 .wiggling {
-  animation: wiggle 0.5s infinite 2s;
+  animation: wiggle 0.5s infinite 3s;
 }
 
 /* Keep your existing #scene-image-man2 styles but remove transform */
@@ -226,12 +226,12 @@
 }
 
 .growing-head {
-  animation: grow-head 38s ease-in-out forwards;
+  animation: grow-head 30s ease-in-out forwards;
   transform-origin: bottom center;
 }
 
 .growing-body {
-  animation: grow-body 38s ease-in-out forwards;
+  animation: grow-body 30s ease-in-out forwards;
   transform-origin: bottom center;
 }
 
@@ -312,15 +312,15 @@
 
 /* Add these animation classes */
 .floating-shape1 {
-  animation: float-shape1 3s ease-in-out infinite 5s;
+  animation: float-shape1 3s ease-in-out infinite 3s;
 }
 
 .floating-shape2 {
-  animation: float-shape2 4s ease-in-out infinite 5s;
+  animation: float-shape2 4s ease-in-out infinite 3s;
 }
 
 .floating-shape3 {
-  animation: float-shape3 5s ease-in-out infinite 5s;
+  animation: float-shape3 5s ease-in-out infinite 3s;
 }
 
 
@@ -409,7 +409,7 @@
   z-index: -1;
   left: -150px; /* Start off-screen left */
   top: 30%; /* Adjust this for vertical position */
-  animation: flyAcross 7s linear forwards 2s;
+  animation: flyAcross 7s linear forwards 1s;
   transform: scaleX(-1); /* Remove flip for left-to-right */
   display: none; /* Hidden by default */
 }
