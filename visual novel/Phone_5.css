@@ -33,6 +33,37 @@
     margin-bottom: 20px;
   }
 
+.morph-frame {
+  position: absolute;
+  width: auto;
+  height: 130dvh;
+  bottom: -18vh;
+  left: 92vw;
+  transform-origin: center;
+  display: none;
+  z-index: 10000;
+}
+
+/* Animation definiert translate + rotate */
+@keyframes rotate-step {
+  0%   { transform: translateX(-50%) rotate(0deg); }
+  25%  { transform: translateX(-50%) rotate(30deg); }
+  50%  { transform: translateX(-50%) rotate(60deg); }
+  75%  { transform: translateX(-50%) rotate(85deg); }
+  100% { transform: translateX(-50%) rotate(90deg); }
+}
+
+
+.rotate-stockend {
+  animation: rotate-step 1s steps(4, end) forwards;
+}
+
+.rotated-90 {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+
+
   #fly-in-images {
     position: fixed;
     top: 0;
@@ -57,17 +88,26 @@
 
   #img-herz    { 
     width: 60dvw;
-    height: 25dvh;
-    top: -40vh; left: 50vw; transform: translateX(-50%); }
+    height: 28dvh;
+    top: -40vh; left: 50vw; transform: translateX(-50%); 
+  }
+  
   #img-arme { 
     width: 110dvw;
     height: 40dvh;
     bottom: -60vh; left: 50vw; transform: translateX(-50%); }
+
+  #img-laurie1 {
+    width: auto;
+    height: 20dvh;
+    bottom: -60vh; left: 50vw; transform: translateX(-50%);
+  }
   
 
   #img-herz.fly-in    { transform: translate(-50%, 95vh) ; }
   #img-arme.fly-in { transform: translate(-50%, -50vh); }
-  
+  #img-laurie.fly-in { transform: translate(-50%, -50vh); }
+
     #img-herz.fly-out {
     animation: stockend-herz 10s steps(5, end) forwards;
     }
@@ -75,6 +115,7 @@
     #img-arme.fly-out {
     animation: stockend-arme 10s steps(5, end) forwards;
     }
+
 
     @keyframes stockend-herz {
     0% { transform: translate(-50%, 95vh); }
@@ -93,10 +134,7 @@
     80% { transform: translate(-50%, 40vh); }
     100% { transform: translate(-50%, 60vh); }
     }
-
-
   
-
 
   /* Add this to Phone.css */
 @keyframes vibrate {
