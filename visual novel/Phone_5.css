@@ -36,32 +36,27 @@
 .morph-frame {
   position: absolute;
   width: auto;
-  height: 130dvh;
-  bottom: -18vh;
-  left: 92vw;
-  transform-origin: center;
+  height: 50dvh;
+  top: 50%;
+  left: 150%;
+  transform-origin: center center;
   display: none;
   z-index: 10000;
 }
 
-/* Animation definiert translate + rotate */
-@keyframes rotate-step {
-  0%   { transform: translateX(-50%) rotate(0deg); }
-  25%  { transform: translateX(-50%) rotate(30deg); }
-  50%  { transform: translateX(-50%) rotate(60deg); }
-  75%  { transform: translateX(-50%) rotate(85deg); }
-  100% { transform: translateX(-50%) rotate(90deg); }
+@keyframes stockend-slide-out {
+  0%   { transform: translate(50%, -50%) rotate(90deg); }
+  20%  { transform: translate(50%, 0%) rotate(90deg); }
+  40%  { transform: translate(50%, 50%) rotate(90deg); }
+  60%  { transform: translate(50%, 90%) rotate(90deg); }
+  80%  { transform: translate(50%, 130%) rotate(90deg); }
+  100% { transform: translate(50%, 170%) rotate(90deg); }
 }
 
-
-.rotate-stockend {
-  animation: rotate-step 1s steps(4, end) forwards;
+.stockend-slide-out {
+  animation: stockend-slide-out 2s steps(6, end) forwards;
+  transform-origin: center center;
 }
-
-.rotated-90 {
-  transform: translateX(-50%) rotate(90deg);
-}
-
 
 
   #fly-in-images {
@@ -134,7 +129,73 @@
     80% { transform: translate(-50%, 40vh); }
     100% { transform: translate(-50%, 60vh); }
     }
-  
+
+  /*umarmung*/
+
+  #slide-left1, #slide-left2 {
+  left: 0;
+  top: 50dvh;
+  height: 30dvh;
+  position: absolute;
+  z-index: 20;
+}
+
+#slide-left2 {
+  top: 65dvh; /* Unter dem ersten Bild */
+  height: 15dvh;
+  left: 8dvw;
+  width: auto;
+  z-index: 21;
+}
+
+#slide-right1, #slide-right2 {
+  right: 0;
+  top: 50dvh;
+  height: 30dvh;
+  position: absolute;
+  z-index: 18;
+}
+
+#slide-right2 {
+  top: 60dvh;
+  height: 20dvh;
+  right: 8dvw;
+  width: auto;
+  z-index: 19;
+}
+
+  @keyframes stockend-slide-left {
+  0%   { transform: translateX(-150%) translateY(0);}
+  20%  { transform: translateX(-120%) translateY(5px);}
+  40%  { transform: translateX(-90%) translateY(-5px); }
+  60%  { transform: translateX(-60%) translateY(5px); }
+  80%  { transform: translateX(-30%) translateY(-5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes stockend-slide-right {
+  0%   { transform: translateX(150%) translateY(0);}
+  20%  { transform: translateX(120%) translateY(5px);}
+  40%  { transform: translateX(90%) translateY(-5px); }
+  60%  { transform: translateX(60%) translateY(5px); }
+  80%  { transform: translateX(30%) translateY(-5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+.stockend-slide-left {
+  animation: stockend-slide-left 6s steps(6, end) forwards;
+}
+
+.stockend-slide-right {
+  animation: stockend-slide-right 6s steps(6, end) forwards;
+}
+
+#slide-left1,
+#slide-left2,
+#slide-right1,
+#slide-right2 {
+  display: none;
+}
 
   /* Add this to Phone.css */
 @keyframes vibrate {
