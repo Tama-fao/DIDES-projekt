@@ -38,7 +38,7 @@ const scenes = {
   },
 
     aye: {
-      image: "images/Big-Science2.png",
+      image: "images/Big-Science-background.png",
 
       audio: "/visual%20novel/audio/big-science/crazy.mp3",
       choices: [
@@ -116,7 +116,7 @@ const scenes = {
     title: {
       image: "images/Big-Science-title.png",
       choices: [
-        { text: "...",  nextScene: "link", isLink: true, href: "Phone_3.html"},
+        { text: "...",  nextScene: "link", isLink: true, href: "Phone_5.html"},
       ]
     },
 
@@ -127,75 +127,287 @@ const wiggleScenes = ["stranger", "aye", "nay", "stairs", "what", "Ride", "Sure"
 let currentScene = "start";
 let currentAudio = null;
 
+
+
+
+
+
+
+
+
 function showScene(sceneKey) {
-const scene = scenes[sceneKey];
-const dialogue = document.getElementById("dialogue");
-const sceneImage = document.getElementById("scene-image");
-const choicesContainer = document.getElementById("choices");
-const personDiv = document.querySelector('.person');
-const manHead = document.getElementById('scene-image-man2');
-const gameContainer = document.getElementById('game-container');
-const personFullDiv = document.querySelector('.person-full');
+  const scene = scenes[sceneKey];
+  const dialogue = document.getElementById("dialogue");
+  const sceneImage = document.getElementById("scene-image");
+  const choicesContainer = document.getElementById("choices");
+  const personDiv = document.querySelector('.person');
+  const manHead = document.getElementById('scene-image-man2');
+  const manBody = document.getElementById('scene-image-man1');
+  const gameContainer = document.getElementById('game-container');
+  const personFullDiv = document.querySelector('.person-full');
+  const shapesDiv = document.querySelector('.shapes');
 
 
 
-// Show/hide the person based on scene
-if (sceneKey === "start" || sceneKey === "mitten" || sceneKey === "title"){
-  personDiv.style.display = 'none';
+
+// In the showScene function, add this for the title scene:
+if (sceneKey === "title") {
+// Show and animate the big text
+const bigText = document.getElementById('big-text');
+bigText.style.display = 'block';
+bigText.style.animation = 'none';
+void bigText.offsetWidth; // Trigger reflow
+bigText.style.animation = 'floatUp 2s ease-out forwards';
+
+// Remove the game-container's title class if it exists
+gameContainer.classList.remove('scene-title', 'show-choices');
+
+// Add title class
+gameContainer.classList.add('scene-title');
+
+// After animation completes, show choices
+bigText.addEventListener('animationend', () => {
+  gameContainer.classList.add('show-choices');
+}, { once: true });
 } else {
-  personDiv.style.display = 'grid';
+// Hide big text in all other scenes
+document.getElementById('big-text').style.display = 'none';
 }
 
+
+
+
+
+
+
+
+  // In the showScene function, add this code at the beginning:
+const taube = document.querySelector('.taube');
+const snowContainer = document.querySelector('.snow-container');
+const snowImg = snowContainer.querySelector('img');
+
+// Reset animations
+taube.style.display = 'none';
+snowContainer.style.display = 'none';
+taube.style.animation = 'none';
+snowImg.style.animation = 'none';
+
+// Trigger animations only in start scene
+if (sceneKey === "start") {
+// Show and animate taube first
+taube.style.display = 'block';
+taube.style.animation = 'flyAcross 7s linear forwards 2s';
+
+// After taube finishes, show snow
+taube.addEventListener('animationend', () => {
+  snowContainer.style.display = 'block';
+  snowImg.style.animation = 'flySnowAcross 5s linear forwards 2s';
+}, {once: true});
+}
+
+
+
+
+
+  // Show/hide the person based on scene
+  if (sceneKey === "start" || sceneKey === "mitten" || sceneKey === "title" || sceneKey === "what"){
+    personDiv.style.display = 'none';
+  } else {
+    personDiv.style.display = 'grid';
+  }
+
+  /*
+  if (sceneKey === "mitten") {
+    personFullDiv.style.display = 'grid';
+    personDiv.style.display = 'none'; // Ensure the split person is hidden
+  } else {
+    personFullDiv.style.display = 'none';
+  }
+
+  */
+
+
+
+// Taube3 animation for stranger scene
+const taube3 = document.getElementById('taube3');
+taube3.style.display = 'none';
+taube3.style.animation = 'none';
+
+if (sceneKey === "stranger") {
+taube3.style.display = 'block';
+// Reset animation and trigger it after a short delay
+setTimeout(() => {
+  taube3.style.animation = 'none';
+  void taube3.offsetWidth; // Trigger reflow
+  taube3.style.animation = 'taube3-animation 8s ease-in-out forwards 8s';
+}, 1000);
+} else {
+taube3.style.display = 'none';
+}
+
+
+
+
+  // In the showScene function, find the mitten scene section and modify it:
 if (sceneKey === "mitten") {
-  personFullDiv.style.display = 'grid';
-  personDiv.style.display = 'none'; // Ensure the split person is hidden
+personFullDiv.style.display = 'grid';
+personDiv.style.display = 'none';
+
+// Reset animation and trigger it
+const man3 = document.getElementById('scene-image-man3');
+man3.style.animation = 'none';
+// Trigger reflow
+void man3.offsetWidth;
+man3.style.animation = 'slideInFromRight 2s ease-out forwards ' ;
 } else {
-  personFullDiv.style.display = 'none';
-}
-
-gameContainer.classList.remove('scene-mitten', 'scene-stranger');
-if (sceneKey === "mitten") {
-gameContainer.classList.add('scene-mitten');
-} else if (sceneKey === "stranger") {
-gameContainer.classList.add('scene-stranger');
+personFullDiv.style.display = 'none';
 }
 
 
-// Control wiggle animation
-if (wiggleScenes.includes(sceneKey)) {
-  manHead.classList.add('wiggling');
-} else {
-  manHead.classList.remove('wiggling');
-}
 
-// Clear previous content
-dialogue.textContent = scene.text || "";
-choicesContainer.innerHTML = "";
-sceneImage.style.backgroundImage = `url('${scene.image}')`;
 
-// Hide choices initially
-choicesContainer.style.display = 'none';
+   // Show shapes only in "aye" scene
+   if (sceneKey === "aye") {
+    shapesDiv.style.display = 'grid';
+  } else {
+    shapesDiv.style.display = 'none';
+  }
 
-// Audio handling
-if (currentAudio) {
-  currentAudio.pause();
-  currentAudio = null;
-}
 
-if (scene.audio) {
-  currentAudio = new Audio(scene.audio);
-  currentAudio.loop = scene.loopAudio || false;
-  currentAudio.play().catch(e => console.log("Audio play failed:", e));
+
+  const shape1 = document.getElementById('shape1');
+  const shape2 = document.getElementById('shape2');
+  const shape3 = document.getElementById('shape3');
+
+  // ... other scene setup code ...
+
+  // Handle shapes floating animation
+  if (sceneKey === "aye") {
+    shapesDiv.style.display = 'grid';
+    shape1.classList.add('floating-shape1');
+    shape2.classList.add('floating-shape2');
+    shape3.classList.add('floating-shape3');
+  } else {
+    shapesDiv.style.display = 'none';
+    shape1.classList.remove('floating-shape1');
+    shape2.classList.remove('floating-shape2');
+    shape3.classList.remove('floating-shape3');
+  }
+
+
+
+
+  // In the showScene function, replace the entire "what" scene section with:
+
+if (sceneKey === "what") {
+const owlDiv = document.querySelector('.owl');
+owlDiv.style.display = 'grid';
+
+// Reset all owl images
+const normalMan = document.getElementById('scene-normal-man');
+const eyeMan = document.getElementById('scene-eye-man');
+const owlMan = document.getElementById('scene-owl-man');
+
+normalMan.style.opacity = '0';
+eyeMan.style.opacity = '0';
+owlMan.style.opacity = '0';
+
+// Sequence the transitions
+// Show normal man immediately
+normalMan.style.opacity = '1';
+
+// After 2 seconds, fade to eyes
+setTimeout(() => {
+  normalMan.style.opacity = '0';
+  eyeMan.style.opacity = '1';
   
-  // Stop wiggle and show choices when audio ends
-  currentAudio.addEventListener('ended', () => {
+  // After another 2 seconds, fade to owl
+  setTimeout(() => {
+    eyeMan.style.opacity = '0';
+    owlMan.style.opacity = '1';
+  }, 2000);
+}, 2000);
+} else {
+document.querySelector('.owl').style.display = 'none';
+}
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+  gameContainer.classList.remove('scene-mitten', 'scene-stranger');
+  if (sceneKey === "mitten") {
+    gameContainer.classList.add('scene-mitten');
+  } else if (sceneKey === "stranger") {
+    gameContainer.classList.add('scene-stranger');
+  }
+
+  // Control wiggle animation
+  if (wiggleScenes.includes(sceneKey)) {
+    manHead.classList.add('wiggling');
+  } else {
     manHead.classList.remove('wiggling');
+  }
+
+ // In the showScene function, modify the growth control section:
+if (sceneKey === "aye") {
+manHead.classList.add('growing-head');
+manBody.classList.add('growing-body');
+} else {
+manHead.classList.remove('growing-head');
+manBody.classList.remove('growing-body');
+// Reset transforms when not growing
+manHead.style.transform = 'translate(0px, 34px)';
+manBody.style.transform = 'translate(0px, 0px)';
+}
+
+  // Clear previous content
+  dialogue.textContent = scene.text || "";
+  choicesContainer.innerHTML = "";
+  sceneImage.style.backgroundImage = `url('${scene.image}')`;
+  
+  // Hide choices initially
+  choicesContainer.style.display = 'none';
+
+  // Audio handling
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
+  
+  if (scene.audio) {
+    currentAudio = new Audio(scene.audio);
+    currentAudio.loop = scene.loopAudio || false;
+    currentAudio.play().catch(e => console.log("Audio play failed:", e));
     
-    // Show choices only if they exist for this scene
+    currentAudio.addEventListener('ended', () => {
+      manHead.classList.remove('wiggling');
+      
+      if (scene.choices && scene.choices.length > 0) {
+        choicesContainer.style.display = 'block';
+        
+        scene.choices.forEach(choice => {
+          const button = document.createElement("button");
+          button.textContent = choice.text;
+          button.onclick = choice.isLink 
+            ? () => (window.location.href = choice.href)
+            : () => showScene(choice.nextScene);
+          choicesContainer.appendChild(button);
+        });
+      }
+    });
+  } else {
     if (scene.choices && scene.choices.length > 0) {
       choicesContainer.style.display = 'block';
       
-      // Create and append choice buttons
       scene.choices.forEach(choice => {
         const button = document.createElement("button");
         button.textContent = choice.text;
@@ -205,29 +417,27 @@ if (scene.audio) {
         choicesContainer.appendChild(button);
       });
     }
-  });
-} else {
-  // If no audio, show choices immediately
-  if (scene.choices && scene.choices.length > 0) {
-    choicesContainer.style.display = 'block';
-    
-    scene.choices.forEach(choice => {
-      const button = document.createElement("button");
-      button.textContent = choice.text;
-      button.onclick = choice.isLink 
-        ? () => (window.location.href = choice.href)
-        : () => showScene(choice.nextScene);
-      choicesContainer.appendChild(button);
-    });
   }
+
+  sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
+  sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
+
+ 
+
+
+
+
+
+
+
 }
 
-// Handle click-to-continue for start scene
-sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
-sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
-}
 
-// Initialize
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
-showScene(currentScene);
+  showScene(currentScene);
 });
+
+

@@ -126,7 +126,10 @@ const scenes = {
 
   let currentScene = "start";
   let currentAudio = null;
-
+  let backgroundMusic = new Audio("/visual%20novel/audio/Big-Science-background-music.mp3");
+  backgroundMusic.loop = true;
+  backgroundMusic.volume = 0.3; // Lower volume (30% of normal volume)
+  
 
 
 
@@ -150,7 +153,22 @@ const scenes = {
 
 
 
-// In the showScene function, add this for the title scene:
+    // Start background music if it's not already playing
+    if (backgroundMusic.paused) {
+        backgroundMusic.play().catch(e => console.log("Background music play failed:", e));
+    }
+    
+    // Pause current scene audio if it exists
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+
+
+
+
+
+// In the showScene function, replace the title scene section with:
 if (sceneKey === "title") {
   // Show and animate the big text
   const bigText = document.getElementById('big-text');
@@ -165,9 +183,11 @@ if (sceneKey === "title") {
   // Add title class
   gameContainer.classList.add('scene-title');
   
-  // After animation completes, show choices
+  // After animation completes, wait 3 seconds then show choices
   bigText.addEventListener('animationend', () => {
-    gameContainer.classList.add('show-choices');
+    setTimeout(() => {
+      gameContainer.classList.add('show-choices');
+    }, 3000); // 3 second delay
   }, { once: true });
 } else {
   // Hide big text in all other scenes
@@ -386,25 +406,34 @@ if (sceneKey === "aye") {
     if (scene.audio) {
       currentAudio = new Audio(scene.audio);
       currentAudio.loop = scene.loopAudio || false;
+      
+      // Lower background music volume when scene audio plays
+      backgroundMusic.volume = 0.1;
+      
       currentAudio.play().catch(e => console.log("Audio play failed:", e));
       
       currentAudio.addEventListener('ended', () => {
-        manHead.classList.remove('wiggling');
-        
-        if (scene.choices && scene.choices.length > 0) {
-          choicesContainer.style.display = 'block';
+          // Restore background music volume
+          backgroundMusic.volume = 0.3;
+          manHead.classList.remove('wiggling');
           
-          scene.choices.forEach(choice => {
-            const button = document.createElement("button");
-            button.textContent = choice.text;
-            button.onclick = choice.isLink 
-              ? () => (window.location.href = choice.href)
-              : () => showScene(choice.nextScene);
-            choicesContainer.appendChild(button);
-          });
-        }
+          if (scene.choices && scene.choices.length > 0) {
+              choicesContainer.style.display = 'block';
+              
+              scene.choices.forEach(choice => {
+                  const button = document.createElement("button");
+                  button.textContent = choice.text;
+                  button.onclick = choice.isLink 
+                      ? () => (window.location.href = choice.href)
+                      : () => showScene(choice.nextScene);
+                  choicesContainer.appendChild(button);
+              });
+          }
       });
-    } else {
+  }
+    
+    
+    else {
       if (scene.choices && scene.choices.length > 0) {
         choicesContainer.style.display = 'block';
         
@@ -439,5 +468,11 @@ if (sceneKey === "aye") {
   document.addEventListener("DOMContentLoaded", () => {
     showScene(currentScene);
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Start background music
+    backgroundMusic.play().catch(e => console.log("Background music play failed:", e));
+    showScene(currentScene);
+});
 
  

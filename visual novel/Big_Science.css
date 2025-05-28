@@ -371,7 +371,7 @@
 
 .taube {
   position: fixed;
-  width: 50px; 
+  width: 150px; 
   height: auto;
   z-index: -1; 
  
@@ -404,10 +404,10 @@
 /* Update the taube animation */
 .taube {
   position: fixed;
-  width: 50px; 
+  width: 150px; 
   height: auto;
   z-index: -1;
-  left: -100px; /* Start off-screen left */
+  left: -150px; /* Start off-screen left */
   top: 30%; /* Adjust this for vertical position */
   animation: flyAcross 7s linear forwards 2s;
   transform: scaleX(-1); /* Remove flip for left-to-right */
@@ -425,8 +425,8 @@
 
 .snow-container img {
   position: absolute;
-  width: 50px;
-  right: -100px; /* Start off-screen right */
+  width: 150px;
+  right: -150px; /* Start off-screen right */
   bottom: 20%; /* Lower position than taube */
   animation: flySnowAcross 5s linear forwards 2s;
   transform: scaleX(-1);
@@ -434,13 +434,13 @@
 
 /* Animation keyframes */
 @keyframes flyAcross {
-  0% { left: -100px; }
-  100% { left: calc(100% + 100px); }
+  0% { left: -150px; }
+  100% { left: calc(100% + 150px); }
 }
 
 @keyframes flySnowAcross {
-  0% { right: -100px; }
-  100% { right: calc(100% + 100px); }
+  0% { right: -150px; }
+  100% { right: calc(100% + 150px); }
 }
 
 
@@ -463,6 +463,9 @@
   animation-delay: 0.5s; /* Small delay before starting */
 }
 
+
+
+
 @keyframes floatUp {
   0% {
     bottom: -200px;
@@ -479,14 +482,27 @@
   }
 }
 
-/* Hide choices initially in title scene */
 .scene-title #choices {
   display: none !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Show choices after animation completes */
 .scene-title.show-choices #choices {
   display: flex !important;
+}
+
+.scene-title #choices button {
+  font-size: 1.5em;
+  padding: 15px 30px;
+  margin: 0 auto;
+  text-align: center;
+  /* Add any additional button styling you want */
 }
 
 
