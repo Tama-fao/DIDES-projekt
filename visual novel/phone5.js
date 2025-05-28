@@ -2,6 +2,8 @@ const scenes = {
   start: {
     image: "images/phone-pickup.png",
     audio: "/visual%20novel/audio/oh-superman/phone-so-hold-me.mp3",
+    endSound: "/visual%20novel/audio/Hang_up.mp3", // Neuer Ton
+    nextImage: "images/phone.png", // Neues Bild
     choices: [
       { text: "Credits", nextScene: "link", isLink: true, href: "ende.html" },
     ]
@@ -33,6 +35,20 @@ function showScene(sceneKey) {
     currentAudio = new Audio(scene.audio);
     currentAudio.loop = scene.loopAudio || false;
     currentAudio.play().catch(e => console.warn("Audio konnte nicht abgespielt werden:", e));
+    
+    // NEU: Nach Audio-Ende Aktionen
+    currentAudio.addEventListener('ended', () => {
+      // Bild wechseln
+      if (scene.nextImage) {
+        sceneImage.style.backgroundImage = `url('${scene.nextImage}')`;
+      }
+      
+      // Ton abspielen
+      if (scene.endSound) {
+        const endAudio = new Audio(scene.endSound);
+        endAudio.play().catch(e => console.warn("Endsound konnte nicht abgespielt werden:", e));
+      }
+    });
   }
 
   dialogue.textContent = scene.text || "";
@@ -98,7 +114,7 @@ function triggerFlyIns() {
 
   setTimeout(() => {
     triggerSlideIn();
-  }, 27500);
+  }, 32000);
 
   setTimeout(() => {
     laurie.classList.add("fly-in");
@@ -109,7 +125,7 @@ function triggerFlyIns() {
 
   setTimeout(() => {
     triggerNewImageFlyIn();
-  }, 38000);
+  }, 43000);
 }
 
 
@@ -176,13 +192,13 @@ function triggerNewImageFlyIn() {
   void newImg.offsetWidth;
   
   // 3. Animation starten (stockig mit steps(5))
-    newImg.style.animation = 'flyInSteps 4s steps(5, end) forwards';
+    newImg.style.animation = 'flyInSteps 4s steps(15, end) forwards';
 
   // 4. Rückwärtsanimation nach 4 Sekunden
   setTimeout(() => {
     newImg.style.animation = 'none';
     void newImg.offsetWidth; // Reflow
-    newImg.style.animation = 'flyOutSteps 4s steps(5, end) forwards';
+    newImg.style.animation = 'flyOutSteps 4s steps(15, end) forwards';
   }, 5000);
 }
 

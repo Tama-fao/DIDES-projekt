@@ -111,7 +111,7 @@
 
    /* Neue CSS-Klassen für die Herz-Animation */
 .heartbeat {
-  animation: heartbeat 1s infinite;
+  animation: heartbeat 0.8s infinite;
 }
 
 .heartbeat-while-flying {
@@ -176,7 +176,7 @@
   height: 20dvh;
   right: 8dvw;
   width: auto;
-  z-index: 19;
+  z-index: 22;
 }
 
   @keyframes stockend-slide-left {
