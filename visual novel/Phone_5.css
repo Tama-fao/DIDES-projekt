@@ -197,6 +197,59 @@
   display: none;
 }
 
+@keyframes stockend-slide-out-left {
+  0%   { transform: translateX(0) translateY(0); }
+  20%  { transform: translateX(-30%) translateY(5px); }
+  40%  { transform: translateX(-60%) translateY(-5px); }
+  60%  { transform: translateX(-90%) translateY(5px); }
+  80%  { transform: translateX(-120%) translateY(-5px); }
+  100% { transform: translateX(-150%) translateY(0); }
+}
+
+@keyframes stockend-slide-out-right {
+  0%   { transform: translateX(0) translateY(0); }
+  20%  { transform: translateX(30%) translateY(5px); }
+  40%  { transform: translateX(60%) translateY(-5px); }
+  60%  { transform: translateX(90%) translateY(5px); }
+  80%  { transform: translateX(120%) translateY(-5px); }
+  100% { transform: translateX(150%) translateY(0); }
+}
+
+.slide-out-left {
+  animation: stockend-slide-out-left 3s steps(6, end) forwards;
+}
+
+.slide-out-right {
+  animation: stockend-slide-out-right 3s steps(6, end) forwards;
+}
+
+#new-fly-in {
+  transition: none;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform-origin: center center;
+  opacity: 0;
+  transform: translateX(-50%) translateY(0) scale(0.5);
+  display: block;
+  z-index: 10001;
+  /* animation: flyInSteps 10s steps(12, end) forwards;  <- Hier entfernen! */
+}
+
+
+@keyframes flyInSteps {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-150px) scale(8); /* größer */
+  }
+}
+
+
+
   /* Add this to Phone.css */
 @keyframes vibrate {
   0% { transform: translate(0, 0) rotate(0deg); }
