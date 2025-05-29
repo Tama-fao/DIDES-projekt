@@ -1,6 +1,6 @@
 const scenes = {
   start: {
-    image: "/visual%20novel/images/High_Five.png",
+    image: "images/High_Five.png",
     text: "High Five to enter", // Kein Text gewünscht
   },
 };
