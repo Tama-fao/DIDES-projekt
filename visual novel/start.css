@@ -4,7 +4,7 @@
     background-position: center;
     background-repeat: no-repeat;
     position: fixed; /* Immer am gleichen Ort im Viewport */
-    top: 0;
+    top: 100px;
     left: -70dvw;
     width: 100%;
     height: 100%;
@@ -13,12 +13,12 @@
 }
 
 #scene-image2 {
-    background-image: url("/visual%20novel/images/High_Five.png");
+    background-image: url("/images/High_Five.png");
     background-size: cover; /* passt das Bild an */
     background-position: center;
     background-repeat: no-repeat;
     position: fixed; /* Immer am gleichen Ort im Viewport */
-    top: 0;
+    top: 100px;
     right: -70dvw;
     width: 100%;
     height: 100%;

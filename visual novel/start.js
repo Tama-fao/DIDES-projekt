@@ -52,7 +52,7 @@ function showScene(sceneKey) {
     document.removeEventListener("click", moveImages);
 
     setTimeout(() => {
-      window.location.href = "phone_1.html";
+      window.location.href = "Phone_1.html";
     }, 1200); // 1 Sekunde für die CSS Transition
   }
 
