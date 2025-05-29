@@ -1,7 +1,7 @@
 const scenes = {
     start: {
       image: "images/Big-Science.png",
-      audio: "/visual%20novel/audio/big-science/golden-city.mp3",
+      audio: "audio/big-science/golden-city.mp3",
       choices: [
         { text: "got them", nextScene: "mitten" },
        
@@ -9,7 +9,7 @@ const scenes = {
     },
 
     mitten: {
-      audio: "/visual%20novel/audio/big-science/here-is-a-man.mp3",
+      audio: "audio/big-science/here-is-a-man.mp3",
       image: "images/Big-Science.png",
 
       choices: [
@@ -19,7 +19,7 @@ const scenes = {
     },
 
     stranger: {
-      audio: "/visual%20novel/audio/big-science/howdy-every-man.mp3",
+      audio: "audio/big-science/howdy-every-man.mp3",
       image: "images/Big-Science2.png",
 
       choices: [
@@ -28,7 +28,7 @@ const scenes = {
       ]
     },
     directions: {
-      audio: "/visual%20novel/audio/big-science/hey-pal-directions.mp3",
+      audio: "audio/big-science/hey-pal-directions.mp3",
       image: "images/Big-Science2.png",
 
       choices: [
@@ -40,7 +40,7 @@ const scenes = {
       aye: {
         image: "images/Big-Science-background.png",
 
-        audio: "/visual%20novel/audio/big-science/crazy.mp3",
+        audio: "audio/big-science/crazy.mp3",
         choices: [
             { text: "...",  nextScene: "title" },
         ]
@@ -59,7 +59,7 @@ const scenes = {
       stairs: {
         image: "images/Big-Science2.png",
 
-        audio: "/visual%20novel/audio/big-science/stairs.mp3",
+        audio: "audio/big-science/stairs.mp3",
         choices: [
           { text: "All about that!", nextScene: "aye" },
           { text: "What?", nextScene: "what" }
@@ -69,7 +69,7 @@ const scenes = {
       what: {
         image: "images/Big-Science2.png",
 
-        audio: "/visual%20novel/audio/big-science/Ooo-coo-coo.mp3",
+        audio: "audio/big-science/Ooo-coo-coo.mp3",
         choices: [
             { text: "...",  nextScene: "title" },
         ]
@@ -78,7 +78,7 @@ const scenes = {
       Thanks: {
         image: "images/Big-Science2.png",
 
-        audio: "/visual%20novel/audio/big-science/that-must-be-the-place.mp3",
+        audio: "audio/big-science/that-must-be-the-place.mp3",
         choices: [
             { text: "...",  nextScene: "title" },
         ]
@@ -98,7 +98,7 @@ const scenes = {
       Sure: {
         image: "images/Big-Science2.png",
 
-        audio: "/visual%20novel/audio/big-science/hey-professor.mp3",
+        audio: "audio/big-science/hey-professor.mp3",
         choices: [
             { text: "Thanks for the ride.", nextScene: "title"  },
         ]
@@ -107,7 +107,7 @@ const scenes = {
       silent: {
         image: "images/Big-Science2.png",
 
-        audio: "/visual%20novel/audio/big-science/and-long-cars.mp3",
+        audio: "audio/big-science/and-long-cars.mp3",
         choices: [
           { text: "...", nextScene: "nay" },
         ]
@@ -126,7 +126,7 @@ const scenes = {
 
   let currentScene = "start";
   let currentAudio = null;
-  let backgroundMusic = new Audio("/visual%20novel/audio/Big-Science-background-music.mp3");
+  let backgroundMusic = new Audio("audio/Big-Science-background-music.mp3");
   backgroundMusic.loop = true;
   backgroundMusic.volume = 0.3; // Lower volume (30% of normal volume)
   
