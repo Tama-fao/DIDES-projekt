@@ -1,0 +1,51 @@
+
+#scene-image {
+    background-image: url("LetX=X_001.png");
+    background-size: cover; /* passt das Bild an */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed; /* Immer am gleichen Ort im Viewport */
+    top: 0;
+    left: 0;
+    width: 60dvh;
+    height: 100dvh;
+    z-index: -1;
+  }
+
+  #scene-image2 {
+    background-image: url("LetX=X_002.png");
+    background-size: cover; /* passt das Bild an */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed; /* Immer am gleichen Ort im Viewport */
+    top: 0;
+    left: 0;
+    width: 60dvh;
+    height: 100dvh;
+    z-index: -1;
+  }
+
+  #scene-image3 {
+    background-image: url("LetX=X_003.png");
+    background-size: cover; /* passt das Bild an */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed; /* Immer am gleichen Ort im Viewport */
+    top: 0;
+    left: 0;
+    width: 60dvh;
+    height: 100dvh;
+    z-index: -1;
+  }
+  
+  .choice-button {
+    background: #7d1578;
+    color: #e96eff;
+    box-shadow: 20px 20px #00fbff;
+  }
+  
+  .choice-button:hover {
+    background: #e96eff;
+    color: #7d1578;
+  }
+  

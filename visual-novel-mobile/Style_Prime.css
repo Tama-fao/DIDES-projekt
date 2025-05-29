@@ -1,0 +1,84 @@
+/*
+@font-face {
+  font-family: "SouvenirB";
+  src: url("/visual\ novel/SouvenirB.woff2") format("woff2");
+}
+*/
+
+
+body {
+  
+  font-size: 3rem;
+  background-color: #000;
+  color: rgb(0, 0, 0);
+  margin: 0;
+  padding: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Helvetica Neue';
+
+}
+
+#game-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%; /* Full width */
+  margin: 0; /* Remove auto margins */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+
+
+#choices {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: auto;
+  width: 100%; /* Full width within container */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.choice-button {
+  font-family: 'Helvetica Neue';
+  padding: 10px;
+  
+  border: none;
+  color: black;
+  cursor: pointer;
+
+  width: 98%; /* Full width of choices container */
+  box-sizing: border-box; /* Include padding in width calculation */
+  min-height: 5dvh;
+  font-size: 3rem;
+  margin-bottom: 20px;
+
+}
+
+
+button {
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue';
+  padding: 10px;
+  background: url(images/schnippsel-choice.png);
+  background-size: 100% 100%; /* Consistent with choice-button */
+  border: none;
+  color: black;
+  cursor: pointer;
+  
+  width: 98%; /* Full width of choices container */
+  box-sizing: border-box; /* Include padding in width calculation */
+  min-height: 12dvh;
+  font-size: 1.5rem;
+  font-weight: 700;
+ /* text-shadow: 4px 4px gray;*/
+  margin-bottom: 20px;
+}
+
+.choice-button:hover {
+  background: #777;
+}
+

@@ -1,0 +1,612 @@
+#scene-image {
+  background-image: url("images/Big-Science.png");
+  background-size: cover; /* passt das Bild an */
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed; /* Immer am gleichen Ort im Viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+#scene-image2 {
+  background-image: url("images/Big-Science2.png");
+  background-size: cover; /* passt das Bild an */
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed; /* Immer am gleichen Ort im Viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+
+  
+  body {
+    color: rgb(0, 0, 0);
+  }
+  
+  
+
+  button {
+    
+    text-shadow: 2px 2px #C7A11B;
+  }
+
+  .person {
+    display: none; /* Hide by default */
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 2fr;
+    height: 100dvh;
+    width: 100dvw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Behind everything */
+    }
+
+  #scene-image-man1{
+    grid-area: 3 / 1 / 4 / 2;
+    background-image: url(images/crazy-man-body.png);
+    background-size: 90%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(0px, 0px); /* Default position */
+
+   
+}
+
+/* Add this to your CSS */
+@keyframes wiggle {
+  0%, 100% { transform: translate(0px, 25px) rotate(0deg); }
+  25% { transform: translate(0px, 25px) rotate(8deg); }
+  50% { transform: translate(0px, 25px) rotate(-8deg); }
+  75% { transform: translate(0px, 25px) rotate(8deg); }
+}
+
+.wiggling {
+  animation: wiggle 0.5s infinite 3s;
+}
+
+/* Keep your existing #scene-image-man2 styles but remove transform */
+#scene-image-man2 {
+    grid-area: 2 / 1 / 3 / 2;
+    background-image: url(images/crazy-man-head.png);
+    background-size: 90%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: end;
+    transform: translate(0px, 34px);
+}
+
+
+.person-full {
+  display: none; /* Hide by default */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 2fr;
+  height: 100dvh;
+  width: 100dvw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Behind everything */
+  }
+
+  /*
+#scene-image-man3 {
+  grid-area: 2 / 1 / 4 / 2;
+  background-image: url(images/crazy-man-full.png);
+  background-size: 50%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  transform: translate(120px, 0px);
+  width: 100%;
+  height: 100%;
+  align-items: end;
+  z-index: -1;
+}
+
+*/
+
+
+/* Add these new animations for man3 */
+@keyframes slideInFromRight {
+  0% {
+    transform: translate(300px, 0px) rotate(-90deg);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(120px, 0px) rotate(90deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120px, 0px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Update the #scene-image-man3 styles */
+#scene-image-man3 {
+  grid-area: 2 / 1 / 4 / 2;
+  background-image: url(images/crazy-man-full.png);
+  background-size: 50%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  transform: translate(120px, 0px);
+  width: 100%;
+  height: 100%;
+  align-items: end;
+  z-index: -1;
+  opacity: 1; /* Start invisible */
+  animation: slideInFromRight 2s ease-out forwards 2s;
+}
+
+
+#choices {
+  position: fixed;
+  bottom: 20px; /* Default position */
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Special case for mitten scene */
+.scene-mitten #choices {
+  bottom: auto;
+  top: 20px;
+}
+
+/* Update the existing .scene-stranger #choices button styles */
+.scene-stranger #choices {
+  flex-direction: column;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 300px; /* Increased from 10px to 30px for more space between buttons */
+  padding: 20px 0; /* Add some vertical padding */
+}
+
+.scene-stranger #choices button {
+  font-size: 2em;
+  padding: 15px 30px; /* Increased padding for larger click area */
+  margin: 0 auto; /* Center each button horizontally */
+  width: 80%; /* Make buttons wider but still centered */
+  max-width: 400px; /* Maximum width for very large screens */
+  text-align: center;
+  display: block; /* Ensure each button is on its own line */
+}
+
+/* Optional: Add a smooth hover effect */
+.scene-stranger #choices button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Add this to Big_Science.css */
+@keyframes grow-head {
+  0% { 
+    transform: translate(0px, 34px) scale(1);
+  }
+  100% { 
+    transform: translate(0px, 34px) scale(1.8);
+  }
+}
+
+@keyframes grow-body {
+  0% { 
+    transform: translate(0px, 10px) scale(1);
+  }
+  100% { 
+    transform: translate(0px, 340px) scale(1.8); /* Moves body down while growing */
+  }
+}
+
+.growing-head {
+  animation: grow-head 30s ease-in-out forwards;
+  transform-origin: bottom center;
+}
+
+.growing-body {
+  animation: grow-body 30s ease-in-out forwards;
+  transform-origin: bottom center;
+}
+
+
+.shapes {
+  display: none; /* Hide by default */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr ;
+  height: 100dvh;
+  width: 100dvw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -2; /* Behind everything */
+  
+}
+
+
+ 
+#shape1{
+  grid-area: 1 / 1 / 2 / 2;
+  background-image: url(images/yellow-shape3.png);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0px, 0px); /* Default position */
+}
+
+#shape2{
+  grid-area: 1 / 1 / 2 / 2;
+  background-image: url(images/yellow-shape2.png);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0px, 0px); /* Default position */
+}
+
+#shape3{
+  grid-area: 1 / 1 / 2 / 2;
+  background-image: url(images/yellow-shape1.png);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0px, 0px); /* Default position */
+}
+
+
+/* Add these new keyframes for floating animations */
+@keyframes float-shape1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-shape2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+@keyframes float-shape3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-40px); }
+}
+
+/* Add these animation classes */
+.floating-shape1 {
+  animation: float-shape1 3s ease-in-out infinite 3s;
+}
+
+.floating-shape2 {
+  animation: float-shape2 4s ease-in-out infinite 3s;
+}
+
+.floating-shape3 {
+  animation: float-shape3 5s ease-in-out infinite 3s;
+}
+
+
+.owl {
+  display: none; /* Hide by default */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 100dvh;
+  width: 100dvw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Higher than background but below text */
+}
+
+/* Replace the owl animation styles with these: */
+#scene-normal-man {
+  background-image: url(images/crazy-man-bigeyes.png); /* Add this line */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+#scene-eye-man {
+  background-image: url(images/crazy-man-owl.png); /* Add this line */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+#scene-owl-man {
+  background-image: url(images/crazy-man-owl.png); /* Add this line */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+
+
+
+
+
+.taube {
+  position: fixed;
+  width: 150px; 
+  height: auto;
+  z-index: -1; 
+ 
+  animation: flyAcross 15s linear infinite;
+  transform: scaleX(-1); 
+
+  
+}
+
+
+
+/* Add this to Big_Science.css 
+.snow-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+}
+
+.snow-container img {
+  position: absolute;
+  width: 50px; 
+  animation: flySnowAcross 15s linear forwards;
+  transform: scaleX(-1); Flip horizontally for opposite direction 
+}
+
+*/
+
+/* Update the taube animation */
+.taube {
+  position: fixed;
+  width: 150px; 
+  height: auto;
+  z-index: -1;
+  left: -150px; /* Start off-screen left */
+  top: 30%; /* Adjust this for vertical position */
+  animation: flyAcross 7s ease-in-out forwards 1s;
+  transform: scaleX(-1); /* Remove flip for left-to-right */
+  display: none; /* Hidden by default */
+}
+
+/* Update snow animation */
+.snow-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: none; /* Hidden by default */
+}
+
+.snow-container img {
+  position: absolute;
+  width: 150px;
+  right: -150px; /* Start off-screen right */
+  bottom: 20%; /* Lower position than taube */
+  animation: flySnowAcross 5s ease-in-out forwards 2s;
+  transform: scaleX(-1);
+}
+
+/* Faster stuttering taube animation */
+@keyframes flyAcross {
+  0% { 
+    left: -150px;
+    transform: scaleX(-1) translateY(0);
+  }
+  10% {
+    left: -10%;
+    transform: scaleX(-1) translateY(-5px);
+  }
+  20% {
+    left: 15%;
+    transform: scaleX(-1) translateY(0);
+  }
+  30% {
+    left: 30%;
+    transform: scaleX(-1) translateY(-10px);
+  }
+  40% {
+    left: 45%;
+    transform: scaleX(-1) translateY(5px);
+  }
+  50% {
+    left: 60%;
+    transform: scaleX(-1) translateY(0);
+  }
+  60% {
+    left: 75%;
+    transform: scaleX(-1) translateY(10px);
+  }
+  70% {
+    left: 90%;
+    transform: scaleX(-1) translateY(-5px);
+  }
+  80% {
+    left: 95%;
+    transform: scaleX(-1) translateY(0);
+  }
+  100% { 
+    left: calc(100% + 150px);
+    transform: scaleX(-1) translateY(0);
+  }
+}
+
+/* Faster stuttering snow animation */
+@keyframes flySnowAcross {
+  0% { 
+    right: -150px;
+    transform: scaleX(-1) translateY(0);
+  }
+  15% {
+    right: -10%;
+    transform: scaleX(-1) translateY(15px);
+  }
+  30% {
+    right: 25%;
+    transform: scaleX(-1) translateY(-5px);
+  }
+  45% {
+    right: 50%;
+    transform: scaleX(-1) translateY(20px);
+  }
+  60% {
+    right: 75%;
+    transform: scaleX(-1) translateY(-10px);
+  }
+  75% {
+    right: 90%;
+    transform: scaleX(-1) translateY(5px);
+  }
+  100% { 
+    right: calc(100% + 150px);
+    transform: scaleX(-1) translateY(0);
+  }
+}
+
+/* Add these new styles for the title scene */
+.scene-title #text-box {
+  position: relative;
+  z-index: 10;
+}
+
+#big-text {
+  position: fixed;
+  bottom: -200px; /* Start off-screen */
+  left: 50%;
+  transform: translateX(-50%) scale(0.5);
+  width: 300px; /* Adjust based on your image size */
+  height: auto;
+  opacity: 0;
+  z-index: -1;
+  animation: floatUp 5s ease-out forwards;
+  animation-delay: 0.5s; /* Small delay before starting */
+}
+
+
+
+
+@keyframes floatUp {
+  0% {
+    bottom: -200px;
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 5%;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.scene-title #choices {
+  display: none !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-title.show-choices #choices {
+  display: flex !important;
+}
+
+.scene-title #choices button {
+  font-size: 1.5em;
+  padding: 15px 30px;
+  margin: 0 auto;
+  text-align: center;
+  /* Add any additional button styling you want */
+}
+
+
+/* Add this to Big_Science.css */
+/* Add this to Big_Science.css */
+#taube3 {
+  grid-area: 2 / 1 / 3 / 2;
+  position: absolute;
+  width: 70px;
+  height: auto;
+  bottom: 34px; /* Match man2's vertical position */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -3; /* Behind man2 (man2 has z-index default of 0) */
+  opacity: 1;
+  display: none;
+}
+
+@keyframes taube3-animation {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    
+  }
+  
+  40% {
+    transform: translateX(-50%) translateY(-80px) scaleX(1);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-80px) scaleX(-1);
+  }
+  80% {
+    transform: translateX(-50%) translateY(-80px) scaleX(1);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+   
+  }
+}
+
+.taube3-animate {
+  animation: taube3-animation 8s ease-in-out forwards 8s;
+  display: block;
+}

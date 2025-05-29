@@ -1,0 +1,363 @@
+#scene-image {
+    height: 40dvh;
+   /* background-image: url('images/phone.png'); /* Add your image path */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+  }
+
+  #choices {
+    display: flex;
+    top: 3vh;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  button {
+    font-family: 'Helvetica Neue';
+    top: 3vh;
+    padding: 10px;
+    background: url(images/schnippsel-reply.png);
+    background-size: 100% 100%; /* Consistent with choice-button */
+    border: none;
+    color: black;
+    cursor: pointer;
+ 
+    width: 50%; /* Full width of choices container */
+    box-sizing: border-box; /* Include padding in width calculation */
+    min-height: 12dvh;
+    font-size: 4rem;
+    font-weight: 700;
+    text-shadow: 4px 4px gray;
+    margin-bottom: 20px;
+  }
+
+
+/*long arm laurie*/
+.morph-frame {
+  position: absolute;
+  width: auto;
+  height: 50dvh;
+  top: 50%;
+  left: 150%;
+  transform-origin: center center;
+  display: none;
+  z-index: 10000;
+}
+
+@keyframes morph-slide-in {
+  0%   { transform: translate(150%, -50%) rotate(90deg); }
+  20%  { transform: translate(120%, -50%) rotate(90deg); }
+  40%  { transform: translate(90%, -50%) rotate(90deg); }
+  60%  { transform: translate(60%, -50%) rotate(90deg); }
+  80%  { transform: translate(30%, -50%) rotate(90deg); }
+  100% { transform: translate(-50%, -50%) rotate(90deg); }
+}
+
+.morph-slide-in {
+  animation: morph-slide-in 2s steps(6, end) forwards;
+}
+
+
+
+@keyframes morph-slide-out {
+  0% { transform: translate(-50%, -50%) rotate(90deg); }
+  20% { transform: translate(-70%, -50%) rotate(90deg); }
+  40% { transform: translate(-90%, -50%) rotate(90deg); }
+  60% { transform: translate(-110%, -50%) rotate(90deg); }
+  80% { transform: translate(-130%, -50%) rotate(90deg); }
+  100% { transform: translate(-150%, -50%) rotate(90deg); }
+}
+
+.morph-slide-out {
+  animation: morph-slide-out 10s steps(6, end) forwards;
+}
+
+
+
+@keyframes stockend-slide-out {
+  0%   { transform: translate(50%, -50%) rotate(90deg); }
+  20%  { transform: translate(50%, 0%) rotate(90deg); }
+  40%  { transform: translate(50%, 50%) rotate(90deg); }
+  60%  { transform: translate(50%, 90%) rotate(90deg); }
+  80%  { transform: translate(50%, 130%) rotate(90deg); }
+  100% { transform: translate(50%, 170%) rotate(90deg); }
+}
+
+.stockend-slide-out {
+  animation: stockend-slide-out 2s steps(6, end) forwards;
+  transform-origin: center center;
+}
+
+/*3 lauries*/
+/* Slide-in & -out von links */
+@keyframes post-slide-in-left {
+  0% { transform: translateX(-100%) rotate(90deg); opacity: 1; }
+  100% { transform: translateX(-20%) rotate(90deg); opacity: 1; }
+}
+
+@keyframes post-slide-out-left {
+  0% { transform: translateX(-20%) rotate(90deg); opacity: 1; }
+  100% { transform: translateX(-100%) rotate(90deg); opacity: 0; }
+}
+
+.post-in-left {
+  animation: post-slide-in-left 1s ease-out forwards;
+}
+.post-out-left {
+  animation: post-slide-out-left 1s ease-in forwards;
+}
+
+/* Slide-in & -out von unten */
+@keyframes post-slide-in-bottom {
+  0% { transform: translateY(150%); opacity: 1; }
+  100% { transform: translateY(10%); opacity: 1; }
+}
+@keyframes post-slide-out-bottom {
+  0% { transform: translateY(10%); opacity: 1; }
+  100% { transform: translateY(150%); opacity: 0; }
+}
+
+.post-in-bottom {
+  animation: post-slide-in-bottom 1s ease-out forwards;
+}
+.post-out-bottom {
+  animation: post-slide-out-bottom 1s ease-in forwards;
+}
+
+/* Slide-in & -out von rechts */
+@keyframes post-slide-in-right {
+  0% { transform: translateX(100%) rotate(-90deg); opacity: 1; }
+  100% { transform: translateX(20%) rotate(-90deg); opacity: 1; }
+}
+
+@keyframes post-slide-out-right {
+  0% { transform: translateX(20%) rotate(-90deg); opacity: 1; }
+  100% { transform: translateX(100%) rotate(-90deg); opacity: 0; }
+}
+
+.post-in-right {
+  animation: post-slide-in-right 1s ease-out forwards;
+}
+.post-out-right {
+  animation: post-slide-out-right 1s ease-in forwards;
+}
+
+
+
+/*herz und arme*/
+  #fly-in-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw; 
+    height: 100dvh;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  
+  
+  .fly-image {
+    position: absolute;
+    transition: transform 1s, opacity 1s;
+  }
+
+  .fly-image-stockend {
+    position: absolute;
+  } 
+  
+
+  #img-herz    { 
+    width: 60dvw;
+    height: 28dvh;
+    top: -40vh; left: 50vw; transform: translateX(-50%); 
+  }
+  
+  #img-arme { 
+    width: 110dvw;
+    height: 40dvh;
+    bottom: -60vh; left: 50vw; transform: translateX(-50%); }
+
+  #img-laurie1 {
+    width: auto;
+    height: 20dvh;
+    bottom: -60vh; left: 50vw; transform: translateX(-50%);
+  }
+  
+
+  #img-herz.fly-in    { transform: translate(-50%, 95vh) ; }
+  #img-arme.fly-in { transform: translate(-50%, -50vh); }
+  #img-laurie.fly-in { transform: translate(-50%, -50vh); }
+
+
+    #img-arme.fly-out {
+    animation: stockend-arme 10s steps(5, end) forwards;
+    }
+
+
+   /* Neue CSS-Klassen für die Herz-Animation */
+.heartbeat {
+  animation: heartbeat 0.8s infinite;
+}
+
+.heartbeat-while-flying {
+  animation: 
+    heartbeat 1s infinite,
+    stockend-herz 10s steps(5, end) forwards;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: translate(-50%, var(--current-y, 95vh)) scale(1); }
+  50% { transform: translate(-50%, var(--current-y, 95vh)) scale(1.1); }
+}
+
+@keyframes stockend-herz {
+  0% { --current-y: 95vh; transform: translate(-50%, 95vh) scale(var(--heartbeat-scale, 1)); }
+  20% { --current-y: 100vh; transform: translate(-50%, 100vh) scale(var(--heartbeat-scale, 1)); }
+  40% { --current-y: 110vh; transform: translate(-50%, 110vh) scale(var(--heartbeat-scale, 1)); }
+  60% { --current-y: 130vh; transform: translate(-50%, 130vh) scale(var(--heartbeat-scale, 1)); }
+  80% { --current-y: 150vh; transform: translate(-50%, 150vh) scale(var(--heartbeat-scale, 1)); }
+  100% { --current-y: 170vh; transform: translate(-50%, 170vh) scale(var(--heartbeat-scale, 1)); }
+}
+
+
+
+    @keyframes stockend-arme {
+    0% { transform: translate(-50%, -50vh); }
+    20% { transform: translate(-50%, -30vh); }
+    40% { transform: translate(-50%, -10vh); }
+    60% { transform: translate(-50%, 20vh); }
+    80% { transform: translate(-50%, 40vh); }
+    100% { transform: translate(-50%, 60vh); }
+    }
+
+  /*umarmung*/
+
+  #slide-left1, #slide-left2 {
+  left: 0;
+  top: 50dvh;
+  height: 30dvh;
+  position: absolute;
+  z-index: 20;
+}
+
+#slide-left2 {
+  top: 65dvh; /* Unter dem ersten Bild */
+  height: 15dvh;
+  left: 8dvw;
+  width: auto;
+  z-index: 21;
+}
+
+#slide-right1, #slide-right2 {
+  right: 0;
+  top: 50dvh;
+  height: 30dvh;
+  position: absolute;
+  z-index: 18;
+}
+
+#slide-right2 {
+  top: 60dvh;
+  height: 20dvh;
+  right: 8dvw;
+  width: auto;
+  z-index: 22;
+}
+
+  @keyframes stockend-slide-left {
+  0%   { transform: translateX(-150%) translateY(0);}
+  20%  { transform: translateX(-120%) translateY(5px);}
+  40%  { transform: translateX(-90%) translateY(-5px); }
+  60%  { transform: translateX(-60%) translateY(5px); }
+  80%  { transform: translateX(-30%) translateY(-5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes stockend-slide-right {
+  0%   { transform: translateX(150%) translateY(0);}
+  20%  { transform: translateX(120%) translateY(5px);}
+  40%  { transform: translateX(90%) translateY(-5px); }
+  60%  { transform: translateX(60%) translateY(5px); }
+  80%  { transform: translateX(30%) translateY(-5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+.stockend-slide-left {
+  animation: stockend-slide-left 6s steps(6, end) forwards;
+}
+
+.stockend-slide-right {
+  animation: stockend-slide-right 6s steps(6, end) forwards;
+}
+
+#slide-left1,
+#slide-left2,
+#slide-right1,
+#slide-right2 {
+  display: none;
+}
+
+@keyframes stockend-slide-out-left {
+  0%   { transform: translateX(0) translateY(0); }
+  20%  { transform: translateX(-30%) translateY(5px); }
+  40%  { transform: translateX(-60%) translateY(-5px); }
+  60%  { transform: translateX(-90%) translateY(5px); }
+  80%  { transform: translateX(-120%) translateY(-5px); }
+  100% { transform: translateX(-150%) translateY(0); }
+}
+
+@keyframes stockend-slide-out-right {
+  0%   { transform: translateX(0) translateY(0); }
+  20%  { transform: translateX(30%) translateY(5px); }
+  40%  { transform: translateX(60%) translateY(-5px); }
+  60%  { transform: translateX(90%) translateY(5px); }
+  80%  { transform: translateX(120%) translateY(-5px); }
+  100% { transform: translateX(150%) translateY(0); }
+}
+
+.slide-out-left {
+  animation: stockend-slide-out-left 3s steps(6, end) forwards;
+}
+
+.slide-out-right {
+  animation: stockend-slide-out-right 3s steps(6, end) forwards;
+}
+
+#new-fly-in {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translateX(-50%) translateY(0) scale(0.5);
+  opacity: 0;
+  display: block;
+  z-index: 10001;
+  /* KEINE animation hier! */
+}
+
+/* Nur die Keyframes definieren */
+@keyframes flyInSteps {
+  0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.5); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(-150px) scale(8); }
+}
+
+@keyframes flyOutSteps {
+  0% { opacity: 1; transform: translateX(-50%) translateY(-150px) scale(8); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.5); }
+}
+
+  /* Add this to Phone.css */
+@keyframes vibrate {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-2px, 2px) rotate(-1deg); }
+  40% { transform: translate(2px, -2px) rotate(1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  80% { transform: translate(1px, -1px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.vibrating {
+  animation: vibrate 0.3s infinite;
+}
