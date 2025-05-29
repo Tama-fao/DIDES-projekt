@@ -66,11 +66,11 @@
   
 
 .move-left {
-    transform: translateX(26dvw) !important;
+    transform: translateX(34dvw) !important;
 }
 
 .move-right {
-    transform: scaleX(-1) translateX(26dvw) !important;
+    transform: scaleX(-1) translateX(34dvw) !important;
 }
 
 
