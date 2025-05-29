@@ -2,6 +2,8 @@ const scenes = {
   start: {
     image: "images/phone-pickup.png",
     audio: "/visual%20novel/audio/oh-superman/phone-so-hold-me.mp3",
+    endSound: "/visual%20novel/audio/Hang_up.mp3", // Neuer Ton
+    nextImage: "images/phone.png", // Neues Bild
     choices: [
       { text: "Credits", nextScene: "link", isLink: true, href: "ende.html" },
     ]
@@ -24,27 +26,37 @@ function showScene(sceneKey) {
     return;
   }
 
-  // Stoppe vorheriges Audio
   if (currentAudio) {
     currentAudio.pause();
     currentAudio = null;
   }
 
-  // Audio abspielen, wenn vorhanden
   if (scene.audio) {
     currentAudio = new Audio(scene.audio);
     currentAudio.loop = scene.loopAudio || false;
     currentAudio.play().catch(e => console.warn("Audio konnte nicht abgespielt werden:", e));
+    
+    // NEU: Nach Audio-Ende Aktionen
+    currentAudio.addEventListener('ended', () => {
+      // Bild wechseln
+      if (scene.nextImage) {
+        sceneImage.style.backgroundImage = `url('${scene.nextImage}')`;
+      }
+      
+      // Ton abspielen
+      if (scene.endSound) {
+        const endAudio = new Audio(scene.endSound);
+        endAudio.play().catch(e => console.warn("Endsound konnte nicht abgespielt werden:", e));
+      }
+    });
   }
 
-  // Szene anzeigen
   dialogue.textContent = scene.text || "";
   dialogue.style.transform = "translateY(0)";
   sceneImage.style.backgroundImage = `url('${scene.image}')`;
   sceneImage.style.cursor = sceneKey === "start" ? "pointer" : "default";
   sceneImage.onclick = sceneKey === "start" ? () => showScene(scene.nextScene) : null;
 
-  // Choices löschen & hinzufügen
   choicesContainer.innerHTML = "";
 
   const renderChoices = () => {
@@ -60,14 +72,12 @@ function showScene(sceneKey) {
     }
   };
 
-  // Warten bis Audio endet oder direkt anzeigen
   if (scene.audio && currentAudio) {
     currentAudio.addEventListener("ended", renderChoices);
   } else {
     renderChoices();
   }
 
-  // Fly-in-Animation für bestimmte Szene
   if (sceneKey === "start") {
     triggerFlyIns();
   }
@@ -80,22 +90,31 @@ function triggerFlyIns() {
 
   [herz, arme, laurie].forEach(img => img.classList.remove("fly-in", "fly-out"));
 
-  // Herz (oben)
+  // Herz-Animation (neu implementiert)
   setTimeout(() => {
     herz.classList.add("fly-in");
-    setTimeout(() => herz.classList.add("fly-out"), 10000);
+    
+    // Nach dem Einfliegen (2s) Pulsieren starten
+    setTimeout(() => {
+      herz.classList.add("heartbeat");
+      
+      // Nach 10s Pulsieren beginnt das Ausfliegen
+      setTimeout(() => {
+        herz.classList.add("fly-out");
+        herz.classList.add("heartbeat-while-flying");
+      }, 10000);
+    }, 2000);
   }, 17000);
 
-  // Arme (unten)
+  // Restliche Animationen (Arme, Laurie etc.)
   setTimeout(() => {
     arme.classList.add("fly-in");
     setTimeout(() => arme.classList.add("fly-out"), 2000);
   }, 25000);
 
-  // Neue Slide-In Animation starten 500ms nach Arme-Out (ca. 27,5s)
   setTimeout(() => {
     triggerSlideIn();
-  }, 27500);
+  }, 32000);
 
   setTimeout(() => {
     laurie.classList.add("fly-in");
@@ -103,7 +122,12 @@ function triggerFlyIns() {
   }, 100);
 
   startMorphSequence();
+
+  setTimeout(() => {
+    triggerNewImageFlyIn();
+  }, 43000);
 }
+
 
 function triggerSlideIn() {
   const left1 = document.getElementById("slide-left1");
@@ -113,24 +137,73 @@ function triggerSlideIn() {
 
   [left1, left2, right1, right2].forEach(img => {
     img.style.display = "block";
-    img.classList.remove("stockend-slide-left", "stockend-slide-right");
+    img.classList.remove("stockend-slide-left", "stockend-slide-right", "slide-out-left", "slide-out-right");
     img.style.opacity = "1";
   });
 
-  // Animationen hinzufügen
   left1.classList.add("stockend-slide-left");
   left2.classList.add("stockend-slide-left");
   right1.classList.add("stockend-slide-right");
   right2.classList.add("stockend-slide-right");
 
-  // Optional: nach Ende Animation wieder ausblenden
+  setTimeout(() => {
+    triggerSlideOut();
+  }, 8000);
+}
+
+function triggerSlideOut() {
+  const left1 = document.getElementById("slide-left1");
+  const left2 = document.getElementById("slide-left2");
+  const right1 = document.getElementById("slide-right1");
+  const right2 = document.getElementById("slide-right2");
+
+  [left1, left2].forEach(img => {
+    img.classList.remove("stockend-slide-left");
+    img.classList.add("slide-out-left");
+  });
+
+  [right1, right2].forEach(img => {
+    img.classList.remove("stockend-slide-right");
+    img.classList.add("slide-out-right");
+  });
+
   setTimeout(() => {
     [left1, left2, right1, right2].forEach(img => {
       img.style.display = "none";
+      img.classList.remove("slide-out-left", "slide-out-right");
     });
-  }, 9000); // Dauer der Animation in ms
+
+    // triggerNewImageFlyIn();   <--- hier entfernen oder auskommentieren
+
+  }, 3000);
 }
 
+function triggerNewImageFlyIn() {
+  const newImg = document.getElementById("new-fly-in");
+  if (!newImg) return;
+
+  // 1. Reset und Vorbereitung
+  newImg.style.display = 'block';
+  newImg.style.opacity = '0';
+  newImg.style.transform = 'translateX(-50%) translateY(0) scale(0.5)';
+  newImg.style.animation = 'none';
+  
+  // 2. Reflow erzwingen (wichtig!)
+  void newImg.offsetWidth;
+  
+  // 3. Animation starten (stockig mit steps(5))
+    newImg.style.animation = 'flyInSteps 4s steps(15, end) forwards';
+
+  // 4. Rückwärtsanimation nach 4 Sekunden
+  setTimeout(() => {
+    newImg.style.animation = 'none';
+    void newImg.offsetWidth; // Reflow
+    newImg.style.animation = 'flyOutSteps 4s steps(15, end) forwards';
+  }, 5000);
+}
+
+
+// Morph Sequence unverändert
 function startMorphSequence() {
   const morphFrames = [
     document.getElementById("morph1"),
@@ -193,9 +266,6 @@ function startMorphSequence() {
   setTimeout(nextFrame, 2000);
 }
 
-
-
-// Start der Szene beim Laden der Seite
 document.addEventListener("DOMContentLoaded", () => {
   showScene(currentScene);
 });

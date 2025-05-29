@@ -103,23 +103,38 @@
   #img-arme.fly-in { transform: translate(-50%, -50vh); }
   #img-laurie.fly-in { transform: translate(-50%, -50vh); }
 
-    #img-herz.fly-out {
-    animation: stockend-herz 10s steps(5, end) forwards;
-    }
 
     #img-arme.fly-out {
     animation: stockend-arme 10s steps(5, end) forwards;
     }
 
 
-    @keyframes stockend-herz {
-    0% { transform: translate(-50%, 95vh); }
-    20% { transform: translate(-50%, 100vh); }
-    40% { transform: translate(-50%, 110vh); }
-    60% { transform: translate(-50%, 130vh); }
-    80% { transform: translate(-50%, 150vh); }
-    100% { transform: translate(-50%, 170vh); }
-    }
+   /* Neue CSS-Klassen für die Herz-Animation */
+.heartbeat {
+  animation: heartbeat 0.8s infinite;
+}
+
+.heartbeat-while-flying {
+  animation: 
+    heartbeat 1s infinite,
+    stockend-herz 10s steps(5, end) forwards;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: translate(-50%, var(--current-y, 95vh)) scale(1); }
+  50% { transform: translate(-50%, var(--current-y, 95vh)) scale(1.1); }
+}
+
+@keyframes stockend-herz {
+  0% { --current-y: 95vh; transform: translate(-50%, 95vh) scale(var(--heartbeat-scale, 1)); }
+  20% { --current-y: 100vh; transform: translate(-50%, 100vh) scale(var(--heartbeat-scale, 1)); }
+  40% { --current-y: 110vh; transform: translate(-50%, 110vh) scale(var(--heartbeat-scale, 1)); }
+  60% { --current-y: 130vh; transform: translate(-50%, 130vh) scale(var(--heartbeat-scale, 1)); }
+  80% { --current-y: 150vh; transform: translate(-50%, 150vh) scale(var(--heartbeat-scale, 1)); }
+  100% { --current-y: 170vh; transform: translate(-50%, 170vh) scale(var(--heartbeat-scale, 1)); }
+}
+
+
 
     @keyframes stockend-arme {
     0% { transform: translate(-50%, -50vh); }
@@ -161,7 +176,7 @@
   height: 20dvh;
   right: 8dvw;
   width: auto;
-  z-index: 19;
+  z-index: 22;
 }
 
   @keyframes stockend-slide-left {
@@ -195,6 +210,54 @@
 #slide-right1,
 #slide-right2 {
   display: none;
+}
+
+@keyframes stockend-slide-out-left {
+  0%   { transform: translateX(0) translateY(0); }
+  20%  { transform: translateX(-30%) translateY(5px); }
+  40%  { transform: translateX(-60%) translateY(-5px); }
+  60%  { transform: translateX(-90%) translateY(5px); }
+  80%  { transform: translateX(-120%) translateY(-5px); }
+  100% { transform: translateX(-150%) translateY(0); }
+}
+
+@keyframes stockend-slide-out-right {
+  0%   { transform: translateX(0) translateY(0); }
+  20%  { transform: translateX(30%) translateY(5px); }
+  40%  { transform: translateX(60%) translateY(-5px); }
+  60%  { transform: translateX(90%) translateY(5px); }
+  80%  { transform: translateX(120%) translateY(-5px); }
+  100% { transform: translateX(150%) translateY(0); }
+}
+
+.slide-out-left {
+  animation: stockend-slide-out-left 3s steps(6, end) forwards;
+}
+
+.slide-out-right {
+  animation: stockend-slide-out-right 3s steps(6, end) forwards;
+}
+
+#new-fly-in {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translateX(-50%) translateY(0) scale(0.5);
+  opacity: 0;
+  display: block;
+  z-index: 10001;
+  /* KEINE animation hier! */
+}
+
+/* Nur die Keyframes definieren */
+@keyframes flyInSteps {
+  0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.5); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(-150px) scale(8); }
+}
+
+@keyframes flyOutSteps {
+  0% { opacity: 1; transform: translateX(-50%) translateY(-150px) scale(8); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.5); }
 }
 
   /* Add this to Phone.css */
