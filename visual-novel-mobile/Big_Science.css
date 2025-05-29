@@ -35,7 +35,8 @@
 
   button {
     
-    text-shadow: 2px 2px #C7A11B;
+    text-shadow: 1.5px 1.5px #C7A11B;
+    font-size: 1.2rem;
   }
 
   .person {
@@ -53,11 +54,11 @@
   #scene-image-man1{
     grid-area: 3 / 1 / 4 / 2;
     background-image: url(images/crazy-man-body.png);
-    background-size: 90%;
+    background-size: 85%;
     background-position: bottom;
     background-repeat: no-repeat;
     position: relative;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -82,11 +83,11 @@
 #scene-image-man2 {
     grid-area: 2 / 1 / 3 / 2;
     background-image: url(images/crazy-man-head.png);
-    background-size: 90%;
+    background-size: 85%;
     background-position: bottom;
     background-repeat: no-repeat;
     position: relative;
-    bottom: 0;
+    bottom: 34px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -186,7 +187,7 @@
   display: flex !important;
   align-items: center;
   justify-content: center;
-  gap: 300px; /* Increased from 10px to 30px for more space between buttons */
+  gap: 200px; /* Increased from 10px to 30px for more space between buttons */
   padding: 20px 0; /* Add some vertical padding */
 }
 
@@ -243,7 +244,7 @@
   height: 100dvh;
   width: 100dvw;
   position: fixed;
-  top: 0;
+  top: 25px;
   left: 0;
   z-index: -2; /* Behind everything */
   
