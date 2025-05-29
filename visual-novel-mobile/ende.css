@@ -1,6 +1,6 @@
 #Titel-text {
     font-family: 'Helvetica Neue';
-    font-size: 1.5rem; /* Passe den Wert nach Wunsch an */
+    font-size: 1.2rem; /* Passe den Wert nach Wunsch an */
     color: white;
     text-align: center;
     
@@ -15,7 +15,7 @@
 #choice-button-top {
     
     position: fixed;
-    top: 43vh;
+    top: 40vh;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -62,7 +62,7 @@
   
   .logo1, .logo2, .logo3 {
       position: absolute;
-      width: 25dvw;
+      width: auto;
       height: 12dvh;
       bottom: 38%;
       animation: toggleColor 2s infinite ease-in-out;
