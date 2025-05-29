@@ -68,7 +68,7 @@
     bottom: -60vh; left: 50vw; transform: translateX(-50%); }
   
   #img-left.fly-in   { transform: translate(100vw, -50%); }
-  #img-right.fly-in  { transform: translate(-100vw, -50%) rotate(-90deg); }
+  #img-right.fly-in  { transform: translate(-80vw, -50%) rotate(-90deg); }
   #img-top.fly-in    { transform: translate(-50%, 40vh) rotate(180deg); }
   #img-bottom.fly-in { transform: translate(-50%, -60vh); }
   

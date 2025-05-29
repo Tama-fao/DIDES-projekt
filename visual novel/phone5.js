@@ -1,8 +1,8 @@
 const scenes = {
   start: {
     image: "images/phone-pickup.png",
-    audio: "/visual%20novel/audio/oh-superman/phone-so-hold-me.mp3",
-    endSound: "/visual%20novel/audio/Hang_up.mp3", // Neuer Ton
+    audio: "audio/oh-superman/phone-so-hold-me.mp3",
+    endSound: "audio/Hang_up.mp3", // Neuer Ton
     nextImage: "images/phone.png", // Neues Bild
     choices: [
       { text: "Credits", nextScene: "link", isLink: true, href: "ende.html" },
