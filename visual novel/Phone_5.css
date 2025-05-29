@@ -33,6 +33,8 @@
     margin-bottom: 20px;
   }
 
+
+/*long arm laurie*/
 .morph-frame {
   position: absolute;
   width: auto;
@@ -43,6 +45,36 @@
   display: none;
   z-index: 10000;
 }
+
+@keyframes morph-slide-in {
+  0%   { transform: translate(150%, -50%) rotate(90deg); }
+  20%  { transform: translate(120%, -50%) rotate(90deg); }
+  40%  { transform: translate(90%, -50%) rotate(90deg); }
+  60%  { transform: translate(60%, -50%) rotate(90deg); }
+  80%  { transform: translate(30%, -50%) rotate(90deg); }
+  100% { transform: translate(-50%, -50%) rotate(90deg); }
+}
+
+.morph-slide-in {
+  animation: morph-slide-in 2s steps(6, end) forwards;
+}
+
+
+
+@keyframes morph-slide-out {
+  0% { transform: translate(-50%, -50%) rotate(90deg); }
+  20% { transform: translate(-70%, -50%) rotate(90deg); }
+  40% { transform: translate(-90%, -50%) rotate(90deg); }
+  60% { transform: translate(-110%, -50%) rotate(90deg); }
+  80% { transform: translate(-130%, -50%) rotate(90deg); }
+  100% { transform: translate(-150%, -50%) rotate(90deg); }
+}
+
+.morph-slide-out {
+  animation: morph-slide-out 10s steps(6, end) forwards;
+}
+
+
 
 @keyframes stockend-slide-out {
   0%   { transform: translate(50%, -50%) rotate(90deg); }
@@ -58,7 +90,63 @@
   transform-origin: center center;
 }
 
+/*3 lauries*/
+/* Slide-in & -out von links */
+@keyframes post-slide-in-left {
+  0% { transform: translateX(-100%) rotate(90deg); opacity: 1; }
+  100% { transform: translateX(-20%) rotate(90deg); opacity: 1; }
+}
 
+@keyframes post-slide-out-left {
+  0% { transform: translateX(-20%) rotate(90deg); opacity: 1; }
+  100% { transform: translateX(-100%) rotate(90deg); opacity: 0; }
+}
+
+.post-in-left {
+  animation: post-slide-in-left 1s ease-out forwards;
+}
+.post-out-left {
+  animation: post-slide-out-left 1s ease-in forwards;
+}
+
+/* Slide-in & -out von unten */
+@keyframes post-slide-in-bottom {
+  0% { transform: translateY(150%); opacity: 1; }
+  100% { transform: translateY(10%); opacity: 1; }
+}
+@keyframes post-slide-out-bottom {
+  0% { transform: translateY(10%); opacity: 1; }
+  100% { transform: translateY(150%); opacity: 0; }
+}
+
+.post-in-bottom {
+  animation: post-slide-in-bottom 1s ease-out forwards;
+}
+.post-out-bottom {
+  animation: post-slide-out-bottom 1s ease-in forwards;
+}
+
+/* Slide-in & -out von rechts */
+@keyframes post-slide-in-right {
+  0% { transform: translateX(100%) rotate(-90deg); opacity: 1; }
+  100% { transform: translateX(20%) rotate(-90deg); opacity: 1; }
+}
+
+@keyframes post-slide-out-right {
+  0% { transform: translateX(20%) rotate(-90deg); opacity: 1; }
+  100% { transform: translateX(100%) rotate(-90deg); opacity: 0; }
+}
+
+.post-in-right {
+  animation: post-slide-in-right 1s ease-out forwards;
+}
+.post-out-right {
+  animation: post-slide-out-right 1s ease-in forwards;
+}
+
+
+
+/*herz und arme*/
   #fly-in-images {
     position: fixed;
     top: 0;

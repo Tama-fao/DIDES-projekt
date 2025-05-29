@@ -203,7 +203,6 @@ function triggerNewImageFlyIn() {
 }
 
 
-// Morph Sequence unverändert
 function startMorphSequence() {
   const morphFrames = [
     document.getElementById("morph1"),
@@ -219,53 +218,136 @@ function startMorphSequence() {
     img.style.top = "50%";
     img.style.left = "50%";
     img.style.transformOrigin = "center center";
-    img.style.transform = "translate(-50%, -50%) rotate(90deg)";
-
-    if (i === 0) {
-      img.classList.add("stockend-animation");
-      img.style.display = "block";
-    } else {
-      img.classList.remove("stockend-animation");
-      img.style.display = "none";
-    }
+    img.style.display = "none";
+    img.classList.remove("stockend-animation", "stockend-slide-out", "morph-slide-out", "morph-slide-in");
   });
 
   let currentIndex = 0;
+  const first = morphFrames[0];
+
+  // Vor dem Anzeigen außerhalb positionieren
+  first.style.display = "block";
+  first.style.transform = "translate(150%, -50%) rotate(90deg)";
+
+  // Kurzen Reflow erzwingen, um Animation sicher zu starten
+  void first.offsetWidth;
+
+  // Animation hinzufügen
+  first.classList.add("morph-slide-in");
+
+  // Nach Animation: zurück zur Mitte und mit Morph weitermachen
+  setTimeout(() => {
+    first.classList.remove("morph-slide-in");
+    first.style.transform = "translate(-50%, -50%) rotate(90deg)";
+    first.classList.add("stockend-animation");
+
+    // Starte Morph-Sequenz mit nächstem Frame
+    setTimeout(nextFrame, 1000);
+  }, 2000);
 
   function nextFrame() {
     if (currentIndex < morphFrames.length - 1) {
-      if (currentIndex === 0) {
-        morphFrames[0].classList.remove("stockend-animation");
-        morphFrames[0].style.display = "none";
-      } else {
+      if (currentIndex > 0) {
         morphFrames[currentIndex].style.display = "none";
       }
 
       currentIndex++;
-      morphFrames[currentIndex].style.display = "block";
-      morphFrames[currentIndex].style.transform = "translate(-50%, -50%) rotate(90deg)";
+      const next = morphFrames[currentIndex];
+      next.style.display = "block";
+      next.style.transform = "translate(-50%, -50%) rotate(90deg)";
       setTimeout(nextFrame, 1000);
     } else {
       morphFrames.forEach(img => {
         img.style.display = "none";
-        img.classList.remove("stockend-animation");
-        img.classList.remove("stockend-slide-out");
+        img.classList.remove("stockend-animation", "stockend-slide-out", "morph-slide-out");
       });
 
       const lastFrame = morphFrames[morphFrames.length - 1];
       lastFrame.style.display = "block";
       lastFrame.classList.add("stockend-animation");
 
-      setTimeout(() => {
+            setTimeout(() => {
         lastFrame.classList.remove("stockend-animation");
-        lastFrame.classList.add("stockend-slide-out");
+        lastFrame.classList.add("morph-slide-out");
+
+        // Neue Slides starten nach dem Ausrutschen
+        setTimeout(triggerPostSlides, 4000);
       }, 2000);
+
     }
   }
 
-  setTimeout(nextFrame, 2000);
+  setTimeout(nextFrame, 3000); // Startet nach morph1-Animation (2s) + kleine Pause
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   showScene(currentScene);
 });
+
+function triggerPostSlides() {
+  const left = document.getElementById("post-slide-left");
+  const bottom = document.getElementById("post-slide-bottom");
+  const right = document.getElementById("post-slide-right");
+
+  [left, bottom, right].forEach(img => {
+    if (!img) return;
+
+    img.style.position = "absolute";
+    img.style.zIndex = "10000";
+    img.style.width = "auto";
+    img.style.height = "30dvh";
+    img.style.opacity = "0";
+    img.style.display = "block";
+  });
+
+  // Individuelle Startpositionen außerhalb des sichtbaren Bereichs
+  left.style.left = "0";
+  left.style.top = "50%";
+  left.style.transform = "translateX(-100%) rotate(90deg)";
+  left.style.height = "15dvh";
+  left.style.zIndex = "18"
+
+  bottom.style.display = "block";
+  bottom.style.position = "absolute";
+  bottom.style.left = "0";
+  bottom.style.bottom = "0";
+  bottom.style.right = "-60%";
+  bottom.style.top = "";
+  bottom.style.transform = "translateX(-50%)translateY(100%)"; // nur vertikal
+  bottom.style.height= "40dvh"
+  bottom.style.width = "auto";
+  bottom.style.zIndex = "20"
+
+  right.style.right = "0";
+  right.style.top = "50%";
+  right.style.transform = "translateX(100%) rotate(-90deg)";
+  right.style.height = "15dvh"
+  right.style.zIndex = "17"
+
+  // Reflow
+  void left.offsetWidth;
+  void bottom.offsetWidth;
+  void right.offsetWidth;
+
+  // Slide-in Animationen starten
+  left.classList.add("post-in-left");
+  bottom.classList.add("post-in-bottom");
+  right.classList.add("post-in-right");
+
+  // Nach 1.5s Slide-out
+  setTimeout(() => {
+    left.classList.replace("post-in-left", "post-out-left");
+    bottom.classList.replace("post-in-bottom", "post-out-bottom");
+    right.classList.replace("post-in-right", "post-out-right");
+
+    // Nach Animation wieder verstecken
+    setTimeout(() => {
+      [left, bottom, right].forEach(img => {
+        if (img) img.style.display = "none";
+      });
+    }, 1000);
+  }, 1500);
+}
+
