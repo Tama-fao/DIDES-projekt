@@ -212,16 +212,16 @@ snowContainer.style.display = 'none';
 taube.style.animation = 'none';
 snowImg.style.animation = 'none';
 
-// Trigger animations only in start scene
+// In the showScene function:
 if (sceneKey === "start") {
-  // Show and animate taube first
+  // Show and animate taube first - faster duration (4s instead of 7s)
   taube.style.display = 'block';
-  taube.style.animation = 'flyAcross 7s linear forwards 1s';
+  taube.style.animation = 'flyAcross 5s steps(1) forwards 0.5s'; // Faster and starts sooner
   
   // After taube finishes, show snow
   taube.addEventListener('animationend', () => {
     snowContainer.style.display = 'block';
-    snowImg.style.animation = 'flySnowAcross 5s linear forwards 1s';
+    snowImg.style.animation = 'flySnowAcross 5s steps(1) forwards 0.5s'; // Faster and starts sooner
   }, {once: true});
 }
 

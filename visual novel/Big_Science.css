@@ -432,28 +432,43 @@
   transform: scaleX(-1);
 }
 
+/* Faster stuttering taube animation */
 @keyframes flyAcross {
   0% { 
     left: -150px;
     transform: scaleX(-1) translateY(0);
   }
+  10% {
+    left: -10%;
+    transform: scaleX(-1) translateY(-5px);
+  }
   20% {
-    transform: scaleX(-1) translateY(-10px);
-  }
-  30% {
-    transform: scaleX(-1) translateY(5px);
-  }
-  45% {
-    transform: scaleX(-1) translateY(-15px);
-  }
-  55% {
+    left: 15%;
     transform: scaleX(-1) translateY(0);
   }
-  65% {
+  30% {
+    left: 30%;
+    transform: scaleX(-1) translateY(-10px);
+  }
+  40% {
+    left: 45%;
+    transform: scaleX(-1) translateY(5px);
+  }
+  50% {
+    left: 60%;
+    transform: scaleX(-1) translateY(0);
+  }
+  60% {
+    left: 75%;
     transform: scaleX(-1) translateY(10px);
   }
-  80% {
+  70% {
+    left: 90%;
     transform: scaleX(-1) translateY(-5px);
+  }
+  80% {
+    left: 95%;
+    transform: scaleX(-1) translateY(0);
   }
   100% { 
     left: calc(100% + 150px);
@@ -461,27 +476,30 @@
   }
 }
 
+/* Faster stuttering snow animation */
 @keyframes flySnowAcross {
   0% { 
     right: -150px;
     transform: scaleX(-1) translateY(0);
   }
   15% {
+    right: -10%;
     transform: scaleX(-1) translateY(15px);
   }
-  25% {
+  30% {
+    right: 25%;
     transform: scaleX(-1) translateY(-5px);
   }
-  40% {
+  45% {
+    right: 50%;
     transform: scaleX(-1) translateY(20px);
   }
-  50% {
-    transform: scaleX(-1) translateY(0);
-  }
-  70% {
+  60% {
+    right: 75%;
     transform: scaleX(-1) translateY(-10px);
   }
-  85% {
+  75% {
+    right: 90%;
     transform: scaleX(-1) translateY(5px);
   }
   100% { 

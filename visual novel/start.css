@@ -1,5 +1,5 @@
 #scene-image {
-    background-image: url("/visual%20novel/images/High_Five.png");
+    background-image: url("images/High_Five.png");
     background-size: cover; /* passt das Bild an */
     background-position: center;
     background-repeat: no-repeat;
@@ -13,7 +13,7 @@
 }
 
 #scene-image2 {
-    background-image: url("/images/High_Five.png");
+    background-image: url("images/High_Five.png");
     background-size: cover; /* passt das Bild an */
     background-position: center;
     background-repeat: no-repeat;
