@@ -1,13 +1,13 @@
 const scenes = {
   start: {
     image: "images/phone.png",
-    audio: "/visual%20novel/audio/bbc_telephones.mp3",
+    audio: "audio/bbc_telephones.mp3",
     loopAudio: true,
     nextScene: "pickup" 
   },
   pickup: {
     image: "images/phone-pickup.png",
-    audio: "/visual%20novel/audio/oh-superman/hi-im-not-home.mp3",
+    audio: "audio/oh-superman/hi-im-not-home.mp3",
     choices: [
       { text: "REPLY", nextScene: "link", isLink: true, href: "Big_Science.html" },
     ]

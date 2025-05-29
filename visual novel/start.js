@@ -40,7 +40,7 @@ function showScene(sceneKey) {
   // Enable animation and redirect on click
   function moveImages() {
     setTimeout(() => {
-      const highFiveSound = new Audio("/visual%20novel/audio/Slap.mp3");
+      const highFiveSound = new Audio("audio/Slap.mp3");
       highFiveSound.volume = 0.4; // 30% Lautstärke
       highFiveSound.play().catch(e => console.log("Soundeffekt konnte nicht abgespielt werden:", e));
     }, 500); // <- Delay in Millisekunden (hier: 0.3 Sekunden)
