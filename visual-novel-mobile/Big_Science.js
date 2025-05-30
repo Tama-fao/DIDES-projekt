@@ -14,7 +14,7 @@ const scenes = {
 
       choices: [
         { text: "Don't be a stranger", nextScene: "stranger" },
-        { text: "Got places to be, ask for Directions.", nextScene: "directions" }
+        { text: "Got places to be, ask for Directions.", nextScene: "stranger" }
       ]
     },
 
@@ -24,7 +24,7 @@ const scenes = {
 
       choices: [
         { text: "aye!", nextScene: "aye" },
-        { text: "nay!", nextScene: "nay" }
+        { text: "nay!", nextScene: "aye" }
       ]
     },
     directions: {
